@@ -9,13 +9,13 @@
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 
 :root{
-  --bg:#f5f0e8;
-  --dark:#1a1610;
-  --stone:#3d3428;
-  --gold:#b8925a;
-  --gold2:#d4a96a;
-  --cream:#faf6ef;
-  --muted:#8a7d6b;
+  --bg:#f0ead6;
+  --dark:#1e2818;
+  --stone:#3a4a2e;
+  --gold:#7a9a4a;
+  --gold2:#a0bc6a;
+  --cream:#f7f2e4;
+  --muted:#7a8a6a;
   --card-w:260px;
   --card-h:360px;
   --gap:20px;
@@ -36,26 +36,34 @@ body::after{
   display:flex;flex-direction:column;justify-content:center;align-items:flex-start;
   padding:80px 8vw 60px;
   position:relative;overflow:hidden;
-  background:linear-gradient(160deg,#1a1610 0%,#2e2416 55%,#3d3428 100%);
+  background:#1e2818;
 }
 
 .hero-bg{
   position:absolute;inset:0;
   background:url('img0.jpeg') center/cover no-repeat;
-  opacity:.18;mix-blend-mode:luminosity;
+  opacity:.85;
+}
+
+/* very light dark veil so text stays readable */
+.hero::before{
+  content:'';position:absolute;inset:0;
+  background:rgba(10,16,8,.32);
+  z-index:1;
 }
 
 .hero-line{
   position:absolute;left:8vw;top:0;bottom:0;width:1px;
-  background:linear-gradient(to bottom,transparent,var(--gold) 30%,var(--gold) 70%,transparent);
-  opacity:.35;
+  background:linear-gradient(to bottom,transparent,var(--gold2) 30%,var(--gold2) 70%,transparent);
+  opacity:.5;z-index:2;
 }
 
 .hero-eyebrow{
   font-family:'Jost',sans-serif;font-weight:300;font-size:11px;
-  letter-spacing:.35em;text-transform:uppercase;color:var(--gold);
+  letter-spacing:.35em;text-transform:uppercase;color:var(--gold2);
   margin-left:24px;margin-bottom:20px;
   opacity:0;animation:fU .7s ease .2s forwards;
+  position:relative;z-index:2;
 }
 
 .hero-title{
@@ -63,20 +71,23 @@ body::after{
   font-size:clamp(48px,8vw,110px);line-height:.95;letter-spacing:-.02em;
   color:var(--cream);margin-left:24px;
   opacity:0;animation:fU .8s ease .35s forwards;
+  position:relative;z-index:2;
 }
 .hero-title em{font-style:italic;color:var(--gold2)}
 
 .hero-sub{
   font-family:'Jost',sans-serif;font-weight:200;font-size:14px;
-  color:rgba(250,246,239,.55);letter-spacing:.08em;line-height:1.8;
+  color:rgba(250,246,239,.85);letter-spacing:.08em;line-height:1.8;
   margin-left:24px;margin-top:28px;max-width:380px;
   opacity:0;animation:fU .8s ease .5s forwards;
+  position:relative;z-index:2;
 }
 
 .hero-scroll{
   position:absolute;bottom:40px;left:8vw;margin-left:24px;
   display:flex;align-items:center;gap:14px;
   opacity:0;animation:fI 1s ease 1.2s forwards;
+  z-index:2;
 }
 .hero-scroll span{
   font-family:'Jost',sans-serif;font-size:10px;letter-spacing:.25em;
@@ -106,7 +117,7 @@ body::after{
 
 .rule{
   width:calc(100% - 16vw);margin:28px 8vw 0;height:1px;
-  background:linear-gradient(90deg,var(--gold),transparent);opacity:.35;
+  background:linear-gradient(90deg,var(--gold),transparent);opacity:.45;
 }
 
 /* DRAG HINT */
@@ -152,7 +163,7 @@ body::after{
   border-radius:var(--r);
   overflow:hidden;position:relative;
   background:var(--stone);
-  box-shadow:0 6px 28px rgba(26,22,16,.22);
+  box-shadow:0 6px 28px rgba(30,40,24,.22);
   transition:transform .5s cubic-bezier(.23,1,.32,1),
              box-shadow .5s cubic-bezier(.23,1,.32,1);
 }
@@ -170,7 +181,7 @@ body::after{
 
 .card:hover{
   transform:translateY(-14px) scale(1.025);
-  box-shadow:0 28px 56px rgba(26,22,16,.35),0 0 0 1.5px rgba(184,146,90,.3);
+  box-shadow:0 28px 56px rgba(30,40,24,.35),0 0 0 1.5px rgba(122,154,74,.35);
   z-index:3;
 }
 .card-img{
@@ -181,7 +192,7 @@ body::after{
 .card:hover .card-img{transform:scale(1.07)}
 .card-overlay{
   position:absolute;inset:0;
-  background:linear-gradient(to top,rgba(26,22,16,.92) 0%,rgba(26,22,16,.3) 45%,rgba(26,22,16,.04) 100%);
+  background:linear-gradient(to top,rgba(30,40,24,.92) 0%,rgba(30,40,24,.3) 45%,rgba(30,40,24,.04) 100%);
 }
 .card-body{
   position:absolute;bottom:0;left:0;right:0;
@@ -202,7 +213,7 @@ body::after{
 .card-title em{font-style:italic;color:var(--gold2)}
 .card-tag{
   display:inline-block;margin-top:9px;padding:3px 10px;
-  border-radius:100px;border:1px solid rgba(184,146,90,.4);
+  border-radius:100px;border:1px solid rgba(122,154,74,.5);
   font-family:'Jost',sans-serif;font-size:10px;
   letter-spacing:.15em;text-transform:uppercase;color:var(--gold2);
   opacity:0;transform:translateY(5px);
@@ -216,7 +227,7 @@ body::after{
 }
 .progress-bar{
   flex:1;max-width:200px;height:2px;
-  background:rgba(61,52,40,.15);border-radius:100px;overflow:hidden;
+  background:rgba(58,74,46,.15);border-radius:100px;overflow:hidden;
 }
 .progress-fill{
   height:100%;background:var(--gold);border-radius:100px;
@@ -229,18 +240,18 @@ body::after{
 .nav-btns{margin-left:auto;display:flex;gap:10px}
 .nav-btn{
   width:38px;height:38px;border-radius:50%;
-  border:1.5px solid rgba(184,146,90,.3);
+  border:1.5px solid rgba(122,154,74,.35);
   background:transparent;cursor:pointer;
   display:flex;align-items:center;justify-content:center;
   transition:all .3s ease;color:var(--gold);
 }
-.nav-btn:hover{background:rgba(184,146,90,.12);border-color:var(--gold);transform:scale(1.08)}
+.nav-btn:hover{background:rgba(122,154,74,.15);border-color:var(--gold);transform:scale(1.08)}
 .nav-btn svg{width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:2}
 
 /* FOOTER */
 footer{
   padding:44px 8vw 36px;
-  border-top:1px solid rgba(61,52,40,.15);
+  border-top:1px solid rgba(58,74,46,.2);
   display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;
 }
 .footer-brand{
@@ -405,7 +416,7 @@ footer p{
 
 <footer>
   <div class="footer-brand">Masseria <em>Lamiola Grande</em></div>
-  <div style="width:40px;height:1px;background:var(--gold);opacity:.4"></div>
+  <div style="width:40px;height:1px;background:var(--gold);opacity:.5"></div>
   <p>Puglia — Valle d'Itria</p>
 </footer>
 
