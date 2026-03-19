@@ -40,13 +40,16 @@ body::after{
 }
 
 .hero-bg{
-  position:absolute;inset:0;z-index:0;
+  position:absolute;inset:0;
   background:url('img0.jpeg') center/cover no-repeat;
+  opacity:.85;
 }
 
-.hero-veil{
-  position:absolute;inset:0;z-index:1;
-  background:rgba(0,0,0,.28);
+/* very light dark veil so text stays readable */
+.hero::before{
+  content:'';position:absolute;inset:0;
+  background:rgba(10,16,8,.32);
+  z-index:1;
 }
 
 .hero-line{
@@ -275,7 +278,6 @@ footer p{
 
 <section class="hero">
   <div class="hero-bg"></div>
-  <div class="hero-veil"></div>
   <div class="hero-line"></div>
   <p class="hero-eyebrow">Puglia — Valle d'Itria</p>
   <h1 class="hero-title">Masseria<br><em>Lamiola</em><br>Grande</h1>
