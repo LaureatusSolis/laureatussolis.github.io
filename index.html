@@ -450,9 +450,9 @@ footer p{
     var max = maxScroll();
     if(max<=0) return;
     var pct = track.scrollLeft / max;
-    pFill.style.width = (10 + pct*90) + '%';
-    var idx = Math.min(10, Math.round(track.scrollLeft / STEP) + 1);
-    pLabel.textContent = (idx<10?'0'+idx:idx) + ' — 10';
+    pFill.style.width = (11 + pct*90) + '%';
+    var idx = Math.min(11, Math.round(track.scrollLeft / STEP) + 1);
+    pLabel.textContent = (idx<11?'0'+idx:idx) + ' — 11';
   }
 
   /* smooth scroll */
