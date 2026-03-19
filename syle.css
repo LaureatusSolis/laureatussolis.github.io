@@ -8,35 +8,49 @@ body {
 
 /* CAROSELLO */
 .carousel {
-    display: flex;
+    display: flex;           /* mette le immagini in fila orizzontale */
     gap: 30px;               /* spazio tra le immagini */
     padding: 60px;
-    overflow-x: scroll;
-    cursor: grab;
+    overflow-x: scroll;      /* abilita scroll orizzontale */
+    cursor: grab;            /* cursore per drag */
     user-select: none;
-    scroll-behavior: smooth;  /* scorrimento fluido */
+    scroll-behavior: smooth; /* scroll fluido */
 }
 
 .carousel::-webkit-scrollbar {
-    display: none;            /* nasconde la scrollbar */
+    display: none;           /* nasconde la scrollbar */
 }
 
-/* IMMAGINI */
+/* IMMAGINI DEL CAROSELLO */
 .carousel img {
-    width: 220px;              /* più strette */
-    height: 320px;             /* più alte */
-    object-fit: cover;         /* ritaglia proporzioni se serve */
-    border-radius: 20px;       /* bordi smussati */
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    width: 220px;            /* larghezza fissa */
+    height: 320px;           /* altezza fissa */
+    object-fit: cover;       /* ritaglia proporzioni senza deformare */
+    border-radius: 20px;     /* bordi smussati */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* animazioni fluide */
 }
 
 /* HOVER */
 .carousel img:hover {
-    transform: scale(1.05);
-    box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+    transform: scale(1.05);                   /* leggero zoom */
+    box-shadow: 0 10px 25px rgba(0,0,0,0.4); /* ombra elegante */
 }
 
-/* CURSORE DRAG */
+/* CURSORE QUANDO SI TRASCINA */
 .carousel:active {
     cursor: grabbing;
+}
+
+/* HEADER GENERICO (opzionale, se aggiungi testo sopra il carosello) */
+header {
+    text-align: center;
+    color: white;
+    padding: 30px;
+}
+
+/* SEZIONI TESTO GENERICHE (opzionale) */
+section {
+    text-align: center;
+    color: white;
+    padding: 50px;
 }
