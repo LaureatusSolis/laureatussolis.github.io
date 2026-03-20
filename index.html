@@ -30,7 +30,7 @@ body::after{
   pointer-events:none;z-index:9999;mix-blend-mode:multiply;opacity:.45
 }
 
-/* HERO */
+/* roba appena apri il sito (hero-)*/
 .hero{
   min-height:100vh;
   display:flex;flex-direction:column;justify-content:center;align-items:flex-start;
@@ -45,7 +45,7 @@ body::after{
   opacity:.85;
 }
 
-/* very light dark veil so text stays readable */
+/* velo scuro leggero sull'immagine di sfondo inziale */
 .hero::before{
   content:'';position:absolute;inset:0;
   background:rgba(10,16,8,.32);
@@ -59,7 +59,7 @@ body::after{
 }
 
 .hero-eyebrow{
-  font-family:'Jost',sans-serif;font-weight:300;font-size:11px;
+  font-family:'Jost',sans-serif;font-weight:300;font-size:22px;
   letter-spacing:.35em;text-transform:uppercase;color:var(--gold2);
   margin-left:24px;margin-bottom:20px;
   opacity:0;animation:fU .7s ease .2s forwards;
@@ -68,12 +68,13 @@ body::after{
 
 .hero-title{
   font-family:'Playfair Display',serif;font-weight:400;
-  font-size:clamp(48px,8vw,110px);line-height:.95;letter-spacing:-.02em;
+  font-size:clamp(44px,8vw,110px);line-height:.95;letter-spacing:-.02em;
   color:var(--cream);margin-left:24px;
   opacity:0;animation:fU .8s ease .35s forwards;
   position:relative;z-index:2;
-}
-.hero-title em{font-style:italic;color:var(--gold2)}
+} 
+  .hero-title em{font-style:normal;color:var(--cream)}
+  /* .hero-title em{font-style:italic;color:var(--gold2)} */
 
 .hero-sub{
   font-family:'Jost',sans-serif;font-weight:200;font-size:14px;
@@ -82,12 +83,19 @@ body::after{
   opacity:0;animation:fU .8s ease .5s forwards;
   position:relative;z-index:2;
 }
-
 .hero-scroll{
   position:absolute;bottom:40px;left:8vw;margin-left:24px;
   display:flex;align-items:center;gap:14px;
   opacity:0;animation:fI 1s ease 1.2s forwards;
   z-index:2;
+}
+.hero-logos{
+  position:absolute;bottom:40px;right:8vw;
+  display:flex;align-items:center;gap:18px;
+  z-index:2;
+}
+.hero-logo-img{
+  height:96px;width:auto;object-fit:contain;opacity:.9;
 }
 .hero-scroll span{
   font-family:'Jost',sans-serif;font-size:10px;letter-spacing:.25em;
@@ -176,6 +184,7 @@ body::after{
 .card:nth-child(7) {animation:cIn .65s cubic-bezier(.23,1,.32,1) 1.45s both}
 .card:nth-child(8) {animation:cIn .65s cubic-bezier(.23,1,.32,1) 1.55s both}
 .card:nth-child(9) {animation:cIn .65s cubic-bezier(.23,1,.32,1) 1.65s both}
+.card:nth-child(10){animation:cIn .65s cubic-bezier(.23,1,.32,1) 1.75s both}
 .card:nth-child(10){animation:cIn .65s cubic-bezier(.23,1,.32,1) 1.75s both}
 @keyframes cIn{from{opacity:0;transform:translateY(26px) scale(.97)}to{opacity:1;transform:translateY(0) scale(1)}}
 
@@ -279,12 +288,16 @@ footer p{
 <section class="hero">
   <div class="hero-bg"></div>
   <div class="hero-line"></div>
-  <p class="hero-eyebrow">Puglia — Valle d'Itria</p>
+  <p class="hero-eyebrow">Puglia — Raccontiamo il nostro Territorio</p>
   <h1 class="hero-title">Masseria<br><em>Lamiola</em><br>Grande</h1>
   <p class="hero-sub">Un luogo dove la pietra, l'ulivo e il tempo si incontrano.<br>Esplora la storia, il paesaggio e l'anima di questa terra.</p>
   <div class="hero-scroll">
     <span>Scopri</span>
     <div class="scroll-line"></div>
+  </div>
+    <div class="hero-logos">
+      <img class="hero-logo-img" src="img13.png" alt="Logo Liceo"/>
+      <img class="hero-logo-img" src="img12.png" alt="Logo FAI"/>
   </div>
 </section>
 
@@ -306,7 +319,7 @@ footer p{
       <img class="card-img" src="img1.jpeg" alt="" draggable="false"/>
       <div class="card-overlay"></div>
       <div class="card-body">
-        <div class="card-num">01 — 10</div>
+        <div class="card-num">01 — 11</div>
         <div class="card-title">Dove ci<br><em>troviamo?</em></div>
         <span class="card-tag">Posizione</span>
       </div>
@@ -316,7 +329,7 @@ footer p{
       <img class="card-img" src="img2.jpeg" alt="" draggable="false"/>
       <div class="card-overlay"></div>
       <div class="card-body">
-        <div class="card-num">02 — 10</div>
+        <div class="card-num">02 — 11</div>
         <div class="card-title">La<br><em>Storia</em></div>
         <span class="card-tag">Origini</span>
       </div>
@@ -326,7 +339,7 @@ footer p{
       <img class="card-img" src="img3.jpeg" alt="" draggable="false"/>
       <div class="card-overlay"></div>
       <div class="card-body">
-        <div class="card-num">03 — 10</div>
+        <div class="card-num">03 — 11</div>
         <div class="card-title">Il<br><em>Territorio</em></div>
         <span class="card-tag">Paesaggio</span>
       </div>
@@ -336,7 +349,7 @@ footer p{
       <img class="card-img" src="img4.jpg" alt="" draggable="false"/>
       <div class="card-overlay"></div>
       <div class="card-body">
-        <div class="card-num">04 — 10</div>
+        <div class="card-num">04 — 11</div>
         <div class="card-title">L'<em>Architettura</em></div>
         <span class="card-tag">Strutture</span>
       </div>
@@ -346,7 +359,7 @@ footer p{
       <img class="card-img" src="img5.jpeg" alt="" draggable="false"/>
       <div class="card-overlay"></div>
       <div class="card-body">
-        <div class="card-num">05 — 10</div>
+        <div class="card-num">05 — 11</div>
         <div class="card-title">Il<br><em>Paesaggio</em></div>
         <span class="card-tag">Natura</span>
       </div>
@@ -356,7 +369,7 @@ footer p{
       <img class="card-img" src="img6.jpg" alt="" draggable="false"/>
       <div class="card-overlay"></div>
       <div class="card-body">
-        <div class="card-num">06 — 10</div>
+        <div class="card-num">06 — 11</div>
         <div class="card-title">Le<br><em>Tradizioni</em></div>
         <span class="card-tag">Cultura</span>
       </div>
@@ -366,8 +379,8 @@ footer p{
       <img class="card-img" src="img7.png" alt="" draggable="false"/>
       <div class="card-overlay"></div>
       <div class="card-body">
-        <div class="card-num">07 — 10</div>
-        <div class="card-title"><em>Video</em></div>
+        <div class="card-num">07 — 11</div>
+        <div class="card-title">Video<br><em>Spiegazione</em></div>
         <span class="card-tag">Multimediale</span>
       </div>
     </div>
@@ -376,7 +389,7 @@ footer p{
       <img class="card-img" src="img8.jpeg" alt="" draggable="false"/>
       <div class="card-overlay"></div>
       <div class="card-body">
-        <div class="card-num">08 — 10</div>
+        <div class="card-num">08 — 11</div>
         <div class="card-title">Galleria<br><em>Fotografica</em></div>
         <span class="card-tag">Immagini</span>
       </div>
@@ -386,7 +399,7 @@ footer p{
       <img class="card-img" src="img9.jpeg" alt="" draggable="false"/>
       <div class="card-overlay"></div>
       <div class="card-body">
-        <div class="card-num">09 — 10</div>
+        <div class="card-num">09 — 11</div>
         <div class="card-title">Chi<br><em>siamo</em></div>
         <span class="card-tag">Persone</span>
       </div>
@@ -396,9 +409,19 @@ footer p{
       <img class="card-img" src="img10.jpeg" alt="" draggable="false"/>
       <div class="card-overlay"></div>
       <div class="card-body">
-        <div class="card-num">10 — 10</div>
+        <div class="card-num">10 — 11</div>
         <div class="card-title">Le<br><em>Fonti</em></div>
         <span class="card-tag">Riferimenti</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <img class="card-img" src="img11.png" alt="" draggable="false"/>
+      <div class="card-overlay"></div>
+      <div class="card-body">
+        <div class="card-num">11 — 11</div>
+        <div class="card-title">Il<br><em>FAI</em></div>
+        <span class="card-tag">Fondazione</span>
       </div>
     </div>
 
@@ -407,7 +430,7 @@ footer p{
 
 <div class="progress-row">
   <div class="progress-bar"><div class="progress-fill" id="pFill"></div></div>
-  <span class="prog-label" id="pLabel">01 — 10</span>
+  <span class="prog-label" id="pLabel">01 — 11</span>
   <div class="nav-btns">
     <button class="nav-btn" id="prevBtn"><svg viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></button>
     <button class="nav-btn" id="nextBtn"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
@@ -416,8 +439,8 @@ footer p{
 
 <footer>
   <div class="footer-brand">Masseria <em>Lamiola Grande</em></div>
-  <div style="width:40px;height:1px;background:var(--gold);opacity:.5"></div>
-  <p>Puglia — Valle d'Itria</p>
+  <div style="width:80px;height:2px;background:var(--gold);opacity:.5"></div>
+  <p>Puglia — Raccontiamo il nostro territorio</p>
 </footer>
 
 <script>
@@ -438,9 +461,9 @@ footer p{
     var max = maxScroll();
     if(max<=0) return;
     var pct = track.scrollLeft / max;
-    pFill.style.width = (10 + pct*90) + '%';
-    var idx = Math.min(10, Math.round(track.scrollLeft / STEP) + 1);
-    pLabel.textContent = (idx<10?'0'+idx:idx) + ' — 10';
+    pFill.style.width = (11 + pct*90) + '%';
+    var idx = Math.min(11, Math.round(track.scrollLeft / STEP) + 1);
+    pLabel.textContent = (idx<11?'0'+idx:idx) + ' — 11';
   }
 
   /* smooth scroll */
@@ -557,4 +580,3 @@ footer p{
 </script>
 </body>
 </html>
-
