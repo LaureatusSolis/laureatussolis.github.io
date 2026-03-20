@@ -74,7 +74,6 @@ body::after{
   position:relative;z-index:2;
 } 
   .hero-title em{font-style:normal;color:var(--cream)}
-  /* .hero-title em{font-style:italic;color:var(--gold2)} */
 
 .hero-sub{
   font-family:'Jost',sans-serif;font-weight:200;font-size:14px;
@@ -185,7 +184,6 @@ body::after{
 .card:nth-child(8) {animation:cIn .65s cubic-bezier(.23,1,.32,1) 1.55s both}
 .card:nth-child(9) {animation:cIn .65s cubic-bezier(.23,1,.32,1) 1.65s both}
 .card:nth-child(10){animation:cIn .65s cubic-bezier(.23,1,.32,1) 1.75s both}
-.card:nth-child(10){animation:cIn .65s cubic-bezier(.23,1,.32,1) 1.75s both}
 @keyframes cIn{from{opacity:0;transform:translateY(26px) scale(.97)}to{opacity:1;transform:translateY(0) scale(1)}}
 
 .card:hover{
@@ -281,6 +279,99 @@ footer p{
   .section-intro{flex-direction:column;gap:16px}
   .section-intro-right{text-align:left;max-width:100%}
 }
+
+/* ------------------------------------------------ */
+/* AGGIUNTE RICHIESTE: OVERLAY + HINT */
+/* ------------------------------------------------ */
+
+/* CLICK HINT SULLE CARD */
+.card{ cursor:pointer; }
+
+.card-click-hint{
+  position:absolute;top:14px;right:14px;
+  width:28px;height:28px;border-radius:50%;
+  background:rgba(250,246,239,.12);border:1px solid rgba(250,246,239,.25);
+  display:flex;align-items:center;justify-content:center;
+  opacity:0;transform:scale(.8);
+  transition:opacity .4s ease,transform .4s ease;
+  backdrop-filter:blur(4px);
+}
+.card:hover .card-click-hint{opacity:1;transform:scale(1)}
+.card-click-hint svg{width:12px;height:12px;stroke:var(--cream);fill:none;stroke-width:2}
+
+/* BLOCCA SCROLL QUANDO OVERLAY APERTO */
+body.overlay-open{overflow:hidden}
+
+/* OVERLAY PAGINA */
+.page-overlay{
+  position:fixed;inset:0;z-index:10000;
+  display:flex;flex-direction:column;
+  background:var(--dark);
+  opacity:0;pointer-events:none;
+  transition:opacity .55s cubic-bezier(.23,1,.32,1);
+}
+.page-overlay.is-open{
+  opacity:1;pointer-events:all;
+}
+
+/* HERO OVERLAY */
+.po-hero{
+  position:relative;
+  height:clamp(220px, 40vh, 420px);
+  overflow:hidden;
+}
+.po-hero-img{
+  width:100%;height:100%;object-fit:cover;
+  transform:scale(1.08);
+  transition:transform .9s cubic-bezier(.23,1,.32,1);
+}
+.page-overlay.is-open .po-hero-img{transform:scale(1)}
+
+.po-hero-veil{
+  position:absolute;inset:0;
+  background:linear-gradient(to bottom, rgba(10,16,8,.15), rgba(10,16,8,.72));
+}
+
+.po-hero-meta{
+  position:absolute;bottom:0;left:0;right:0;
+  padding:28px 8vw;
+  display:flex;justify-content:space-between;flex-wrap:wrap;
+  color: var(--cream);
+}
+
+.po-title{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(28px,5vw,56px);
+  color:var(--cream);
+}
+
+.po-tag{
+  border:1px solid rgba(160,188,106,.4);
+  padding:5px 14px;border-radius:100px;
+  font-size:10px;text-transform:uppercase;
+  align-self: flex-end;
+}
+
+/* BACK BUTTON */
+.po-back{
+  position:absolute;top:20px;left:8vw;
+  padding:8px 16px;border-radius:100px;
+  background:rgba(10,16,8,.6);
+  color:var(--cream);
+  text-decoration:none;
+  font-family: 'Jost', sans-serif;
+  font-size: 12px;
+  z-index: 10;
+}
+
+/* BODY OVERLAY */
+.po-body{
+  flex:1;overflow:auto;
+  padding:48px 8vw;
+  color: var(--cream);
+  font-family: 'Jost', sans-serif;
+  line-height: 1.8;
+}
 </style>
 </head>
 <body>
@@ -320,8 +411,11 @@ footer p{
       <div class="card-overlay"></div>
       <div class="card-body">
         <div class="card-num">01 — 12</div>
-        <div class="card-title">Dove siamo</em></div>
+        <div class="card-title">Dove siamo</div>
         <span class="card-tag">Posizione</span>
+      </div>
+      <div class="card-click-hint">
+        <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
       </div>
     </div>
 
@@ -330,8 +424,11 @@ footer p{
       <div class="card-overlay"></div>
       <div class="card-body">
         <div class="card-num">02 — 12</div>
-        <div class="card-title">Esterni</em></div>
+        <div class="card-title">Esterni</div>
         <span class="card-tag">Spazi produttivi</span>
+      </div>
+      <div class="card-click-hint">
+        <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
       </div>
     </div>
 
@@ -340,8 +437,11 @@ footer p{
       <div class="card-overlay"></div>
       <div class="card-body">
         <div class="card-num">03 — 12</div>
-        <div class="card-title">Storia</em></div>
+        <div class="card-title">Storia</div>
         <span class="card-tag">Origini</span>
+      </div>
+      <div class="card-click-hint">
+        <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
       </div>
     </div>
 
@@ -350,28 +450,37 @@ footer p{
       <div class="card-overlay"></div>
       <div class="card-body">
         <div class="card-num">04 — 12</div>
-        <div class="card-title">Cortile</em></div>
+        <div class="card-title">Cortile</div>
         <span class="card-tag">Ambienti di servizio</span>
+      </div>
+      <div class="card-click-hint">
+        <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
       </div>
     </div>
 
     <div class="card">
-      <img class="card-img" src="img5.png" alt="" draggable="false"/>
+      <img class="card-img" src="img5.jpeg" alt="" draggable="false"/>
       <div class="card-overlay"></div>
       <div class="card-body">
         <div class="card-num">05 — 12</div>
-        <div class="card-title">Architettura</em></div>
+        <div class="card-title">Architettura</div>
         <span class="card-tag">Piano residenziale</span>
+      </div>
+      <div class="card-click-hint">
+        <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
       </div>
     </div>
 
     <div class="card">
-      <img class="card-img" src="img6.jpeg" alt="" draggable="false"/>
+      <img class="card-img" src="img6.jpg" alt="" draggable="false"/>
       <div class="card-overlay"></div>
       <div class="card-body">
         <div class="card-num">06 — 12</div>
-        <div class="card-title">Paesaggio</em></div>
+        <div class="card-title">Paesaggio</div>
         <span class="card-tag">Territorio</span>
+      </div>
+      <div class="card-click-hint">
+        <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
       </div>
     </div>
 
@@ -380,8 +489,11 @@ footer p{
       <div class="card-overlay"></div>
       <div class="card-body">
         <div class="card-num">07 — 12</div>
-        <div class="card-title">Tradizioni</em></div>
+        <div class="card-title">Tradizioni</div>
         <span class="card-tag">Folclore</span>
+      </div>
+      <div class="card-click-hint">
+        <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
       </div>
     </div>
 
@@ -390,8 +502,11 @@ footer p{
       <div class="card-overlay"></div>
       <div class="card-body">
         <div class="card-num">08 — 12</div>
-        <div class="card-title">Video</em></div>
+        <div class="card-title">Video</div>
         <span class="card-tag">Multimediale</span>
+      </div>
+      <div class="card-click-hint">
+        <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
       </div>
     </div>
 
@@ -400,8 +515,11 @@ footer p{
       <div class="card-overlay"></div>
       <div class="card-body">
         <div class="card-num">09 — 12</div>
-        <div class="card-title">Galleria Fotografica</em></div>
+        <div class="card-title">Galleria Fotografica</div>
         <span class="card-tag">Immagini</span>
+      </div>
+      <div class="card-click-hint">
+        <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
       </div>
     </div>
 
@@ -409,9 +527,12 @@ footer p{
       <img class="card-img" src="img10.jpeg" alt="" draggable="false"/>
       <div class="card-overlay"></div>
       <div class="card-body">
-        <div class="card-num">10 — 11</div>
-        <div class="card-title">Le Fonti</em></div>
+        <div class="card-num">10 — 12</div>
+        <div class="card-title">Le Fonti</div>
         <span class="card-tag">Riferimenti</span>
+      </div>
+      <div class="card-click-hint">
+        <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
       </div>
     </div>
 
@@ -420,8 +541,11 @@ footer p{
       <div class="card-overlay"></div>
       <div class="card-body">
         <div class="card-num">11 — 12</div>
-        <div class="card-title">Il FAI</em></div>
+        <div class="card-title">Il FAI</div>
         <span class="card-tag">Fondazione</span>
+      </div>
+      <div class="card-click-hint">
+        <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
       </div>
     </div>
 
@@ -430,8 +554,11 @@ footer p{
       <div class="card-overlay"></div>
       <div class="card-body">
         <div class="card-num">12 — 12</div>
-        <div class="card-title">Chi siamo</em></div>
+        <div class="card-title">Chi siamo</div>
         <span class="card-tag">Liceo</span>
+      </div>
+      <div class="card-click-hint">
+        <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
       </div>
     </div>
 
@@ -453,6 +580,24 @@ footer p{
   <p>Puglia — Raccontiamo il nostro territorio</p>
 </footer>
 
+<div class="page-overlay" id="pageOverlay">
+  <div class="po-hero">
+    <img class="po-hero-img" id="poHeroImg" src=""/>
+    <div class="po-hero-veil"></div>
+    <a href="#" class="po-back" id="poBack">← Torna</a>
+    <div class="po-hero-meta">
+      <div>
+        <div id="poNum" style="font-family:'Jost',sans-serif; font-size:12px; letter-spacing:.2em; color:var(--gold2)"></div>
+        <div class="po-title" id="poTitle"></div>
+      </div>
+      <span class="po-tag" id="poTag"></span>
+    </div>
+  </div>
+  <div class="po-body" id="poBody">
+    <p>Benvenuti in questa sezione. Qui verranno approfonditi i contenuti relativi alla categoria selezionata per scoprire ogni segreto della Masseria Lamiola Grande.</p>
+  </div>
+</div>
+
 <script>
 (function(){
   var track   = document.getElementById('track');
@@ -463,7 +608,6 @@ footer p{
 
   var CARD_W = 260, GAP = 20, STEP = CARD_W + GAP;
 
-  /* helpers */
   function clamp(v,lo,hi){ return v<lo?lo:v>hi?hi:v; }
   function maxScroll(){ return track.scrollWidth - track.clientWidth; }
 
@@ -471,12 +615,11 @@ footer p{
     var max = maxScroll();
     if(max<=0) return;
     var pct = track.scrollLeft / max;
-    pFill.style.width = (12 + pct*90) + '%';
+    pFill.style.width = (12 + pct*80) + '%';
     var idx = Math.min(12, Math.round(track.scrollLeft / STEP) + 1);
-    pLabel.textContent = (idx<11?'0'+idx:idx) + ' — 12';
+    pLabel.textContent = (idx<10?'0'+idx:idx) + ' — 12';
   }
 
-  /* smooth scroll */
   var animRaf = null;
   function smoothTo(target){
     cancelAnimationFrame(animRaf);
@@ -500,7 +643,6 @@ footer p{
     smoothTo(Math.round(track.scrollLeft / STEP) * STEP);
   }
 
-  /* ── MOUSE DRAG ── */
   var mouseDown   = false;
   var mouseStartX = 0;
   var mouseStartS = 0;
@@ -543,9 +685,7 @@ footer p{
     })();
   });
 
-  /* ── TOUCH ── */
   var tStartX = 0, tStartS = 0, tLastX = 0, tVel = 0;
-
   track.addEventListener('touchstart', function(e){
     stopInertia();
     tStartX = e.touches[0].clientX;
@@ -572,20 +712,45 @@ footer p{
     })();
   });
 
-  /* ── BUTTONS ── */
   prevBtn.addEventListener('click', function(){ stopInertia(); smoothTo(track.scrollLeft - STEP); });
   nextBtn.addEventListener('click', function(){ stopInertia(); smoothTo(track.scrollLeft + STEP); });
 
-  /* ── KEYBOARD ── */
   document.addEventListener('keydown', function(e){
     if(e.key==='ArrowLeft' ){ stopInertia(); smoothTo(track.scrollLeft - STEP); }
     if(e.key==='ArrowRight'){ stopInertia(); smoothTo(track.scrollLeft + STEP); }
   });
 
-  /* scroll event fallback */
   track.addEventListener('scroll', updateProgress, {passive:true});
-
   updateProgress();
+
+  /* LOGICA JS OVERLAY INTEGRATA */
+  var overlay    = document.getElementById('pageOverlay');
+  var poHeroImg  = document.getElementById('poHeroImg');
+  var poNum      = document.getElementById('poNum');
+  var poTitle    = document.getElementById('poTitle');
+  var poTag      = document.getElementById('poTag');
+  var poBack     = document.getElementById('poBack');
+
+  var cards = document.querySelectorAll('.card');
+
+  cards.forEach(function(card, i){
+    card.addEventListener('click', function(){
+      poHeroImg.src = card.querySelector('img').src;
+      poNum.textContent = card.querySelector('.card-num').textContent;
+      poTitle.innerHTML = card.querySelector('.card-title').innerHTML;
+      poTag.textContent = card.querySelector('.card-tag').textContent;
+
+      overlay.classList.add('is-open');
+      document.body.classList.add('overlay-open');
+    });
+  });
+
+  poBack.addEventListener('click', function(e){
+    e.preventDefault();
+    overlay.classList.remove('is-open');
+    document.body.classList.remove('overlay-open');
+  });
+
 })();
 </script>
 </body>
