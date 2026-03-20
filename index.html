@@ -1207,7 +1207,7 @@ body.overlay-open{overflow:hidden}
 
   var descriptions = {};
   Object.keys(descEncoded).forEach(function(k){
-    descriptions[parseInt(k)] = atob(descEncoded[k]);
+    descriptions[parseInt(k)] = atob(descEncoded[k]).replace(/TraÃ®ni/g, 'Traîni');
   });
 
   var currentCardIdx = 0;
