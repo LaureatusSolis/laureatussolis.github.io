@@ -484,8 +484,7 @@ body.overlay-open{overflow:hidden}
       poHero.classList.remove('shrunk');
       poNav.classList.remove('visible');
       _skipScroll=true; poBody.scrollTop=0;
-      if(idx===7||idx===9||idx===10){ poHero.classList.add('shrunk'); }
-      if(idx===7){ poNav.classList.add('visible'); }
+      if(idx===7||idx===9||idx===10){ poHero.classList.add('shrunk'); poNav.classList.add('visible'); }
       updateNavButtons(idx);
       requestAnimationFrame(function(){poDesc.classList.remove('switching');poHeroImg.classList.remove('switching');});
     }
