@@ -723,7 +723,7 @@ body.overlay-open{overflow:hidden}
   track.addEventListener('scroll', updateProgress, {passive:true});
   updateProgress();
 
- /* LOGICA JS OVERLAY INTEGRATA */
+/* LOGICA JS OVERLAY INTEGRATA */
   var overlay    = document.getElementById('pageOverlay');
   var poHeroImg  = document.getElementById('poHeroImg');
   var poNum      = document.getElementById('poNum');
@@ -733,23 +733,22 @@ body.overlay-open{overflow:hidden}
 
   var cards = document.querySelectorAll('.card');
 
-  cards.forEach(function(card, i){
-    // CAMBIATO DA 'click' A 'dblclick'
-    card.addEventListener('dblclick', function(){
+  cards.forEach(function(card){
+    // Usiamo dblclick
+    card.addEventListener('dblclick', function(e){
+      // Fermiamo qualsiasi movimento del carosello
+      stopInertia();
+      
+      // Popoliamo l'overlay
       poHeroImg.src = card.querySelector('img').src;
       poNum.textContent = card.querySelector('.card-num').textContent;
       poTitle.innerHTML = card.querySelector('.card-title').innerHTML;
       poTag.textContent = card.querySelector('.card-tag').textContent;
 
+      // Apriamo l'overlay
       overlay.classList.add('is-open');
       document.body.classList.add('overlay-open');
     });
-  });
-
-  poBack.addEventListener('click', function(e){
-    e.preventDefault();
-    overlay.classList.remove('is-open');
-    document.body.classList.remove('overlay-open');
   });
   
 })();
