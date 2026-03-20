@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Masseria Lamiola Grande</title>
+<title>Lorenzo Sportelli: Il Sito</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Jost:wght@200;300;400&display=swap" rel="stylesheet"/>
 <style>
 *,::before,::after{box-sizing:border-box;margin:0;padding:0}
@@ -116,7 +116,7 @@ body::after{
   background:rgba(10,16,8,.78);
   backdrop-filter:blur(8px);
   -webkit-backdrop-filter:blur(8px);
-  color:var(--cream);
+  color:var(--gold2);
   font-family:'Jost',sans-serif;
   font-size:11px;
   font-weight:300;
@@ -125,7 +125,7 @@ body::after{
   line-height:1.6;
   padding:8px 14px;
   border-radius:10px;
-  border:1px solid var(--cream);
+  border:1px solid rgba(160,188,106,.3);
   white-space:nowrap;
   pointer-events:none;
   opacity:0;
@@ -140,7 +140,7 @@ body::after{
   left:50%;
   transform:translateX(-50%);
   border:5px solid transparent;
-  border-top-color:var(--cream);
+  border-top-color:rgba(10,16,8,.78);
 }
 
 .hero-logo-wrap:hover .hero-logo-label{
@@ -342,11 +342,73 @@ footer p{
 @keyframes fU{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
 @keyframes fI{from{opacity:0}to{opacity:1}}
 
+/* SEZIONE INTRODUZIONE */
+.intro-section{
+  padding:80px 8vw 0;
+  display:flex;
+  align-items:stretch;
+  gap:48px;
+  flex-wrap:wrap;
+}
+.intro-text{
+  flex:1 1 320px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  gap:20px;
+}
+.intro-text h2{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(32px,4vw,52px);
+  font-weight:400;
+  color:var(--stone);
+  letter-spacing:-.02em;
+  line-height:1.1;
+}
+.intro-text h2 em{font-style:italic;color:var(--gold)}
+.intro-body{
+  font-family:'Jost',sans-serif;
+  font-weight:200;
+  font-size:14px;
+  color:var(--muted);
+  letter-spacing:.05em;
+  line-height:1.95;
+  max-width:520px;
+}
+.intro-img-wrap{
+  flex:1 1 280px;
+  position:relative;
+  border-radius:var(--r);
+  overflow:hidden;
+  min-height:280px;
+  max-height:380px;
+  box-shadow:0 12px 40px rgba(30,40,24,.18);
+}
+.intro-img{
+  width:100%;height:100%;
+  object-fit:cover;
+  display:block;
+  transition:transform .7s cubic-bezier(.23,1,.32,1);
+}
+.intro-img-wrap:hover .intro-img{transform:scale(1.04)}
+.intro-img-caption{
+  position:absolute;bottom:0;left:0;right:0;
+  padding:14px 18px;
+  background:linear-gradient(to top,rgba(30,40,24,.75),transparent);
+  font-family:'Jost',sans-serif;
+  font-size:10px;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  color:rgba(247,242,228,.65);
+}
+
 /* RESPONSIVE */
 @media(max-width:640px){
   :root{--card-w:210px;--card-h:300px}
   .section-intro{flex-direction:column;gap:16px}
   .section-intro-right{text-align:left;max-width:100%}
+  .intro-section{flex-direction:column;gap:28px}
+  .intro-img-wrap{min-height:220px}
 }
 
 /* BLOCCA SCROLL QUANDO OVERLAY APERTO */
@@ -451,11 +513,26 @@ body.overlay-open{overflow:hidden}
   </div>
 </section>
 
+<!-- SEZIONE INTRODUZIONE -->
+<div class="intro-section">
+  <div class="intro-text">
+    <h2>Intro<br><em>duzione</em></h2>
+    <p class="intro-body">La Masseria Lamiola Grande sorge nel cuore della Puglia, tra ulivi secolari e muretti a secco che disegnano il paesaggio da tempi immemorabili. Un luogo dove la storia agricola si intreccia con l'architettura rurale, testimoniando secoli di vita contadina e di rapporto profondo con la terra.<br><br>Questo progetto nasce dalla collaborazione tra il Liceo Polivalente Don Quirico Punzi e il Fondo Ambientale Italiano, con l'obiettivo di valorizzare e raccontare questo straordinario patrimonio culturale pugliese.</p>
+  </div>
+  <div class="intro-img-wrap">
+    <img class="intro-img" src="img0.jpeg" alt="Masseria Lamiola Grande"/>
+    <div class="intro-img-caption">Masseria Lamiola Grande — Puglia</div>
+  </div>
+</div>
+
+<div class="rule"></div>
+
 <!-- SECTION INTRO -->
 <div class="section-intro">
   <div class="section-intro-left"><h2>Le nostre<br><em>sezioni</em></h2></div>
   <div class="section-intro-right">Trascina le schede per esplorare ogni capitolo della storia della Masseria Lamiola Grande. Esegui un doppio tocco sulle schede per aprire quest'ultime</div>
 </div>
+
 <div class="rule"></div>
 <div class="drag-row">
   <span>Trascina</span>
