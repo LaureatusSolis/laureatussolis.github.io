@@ -3,11 +3,10 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Masseria Lamiola Grande</title>
+<title>Lorenzo Sportelli: Il Sito</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Jost:wght@200;300;400&display=swap" rel="stylesheet"/>
 <style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-
+*,::before,::after{box-sizing:border-box;margin:0;padding:0}
 :root{
   --bg:#f0ead6;
   --dark:#3a6b1f;
@@ -22,16 +21,14 @@
   --gap:20px;
   --r:18px;
 }
-
 html,body{height:100%;background:var(--bg);overflow-x:hidden}
-
 body::after{
   content:'';position:fixed;inset:0;
   background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
   pointer-events:none;z-index:9999;mix-blend-mode:multiply;opacity:.45
 }
 
-/* roba appena apri il sito (hero-)*/
+/* HERO */
 .hero{
   min-height:100vh;
   display:flex;flex-direction:column;justify-content:center;align-items:flex-start;
@@ -39,26 +36,21 @@ body::after{
   position:relative;overflow:hidden;
   background:#1e2818;
 }
-
 .hero-bg{
   position:absolute;inset:0;
   background:url('img0.jpeg') center/cover no-repeat;
   opacity:.85;
 }
-
-/* velo scuro leggero sull'immagine di sfondo inziale */
 .hero::before{
   content:'';position:absolute;inset:0;
   background:rgba(10,16,8,.32);
   z-index:1;
 }
-
 .hero-line{
   position:absolute;left:8vw;top:0;bottom:0;width:1px;
   background:linear-gradient(to bottom,transparent,var(--gold2) 30%,var(--gold2) 70%,transparent);
   opacity:.5;z-index:2;
 }
-
 .hero-eyebrow{
   font-family:'Jost',sans-serif;font-weight:300;font-size:22px;
   letter-spacing:.35em;text-transform:uppercase;color:var(--gold2);
@@ -66,16 +58,14 @@ body::after{
   opacity:0;animation:fU .7s ease .2s forwards;
   position:relative;z-index:2;
 }
-
 .hero-title{
   font-family:'Playfair Display',serif;font-weight:400;
   font-size:clamp(44px,8vw,110px);line-height:.95;letter-spacing:-.02em;
   color:var(--cream);margin-left:24px;
   opacity:0;animation:fU .8s ease .35s forwards;
   position:relative;z-index:2;
-} 
-  .hero-title em{font-style:normal;color:var(--cream)}
-
+}
+.hero-title em{font-style:normal;color:var(--cream)}
 .hero-sub{
   font-family:'Jost',sans-serif;font-weight:200;font-size:14px;
   color:rgba(250,246,239,.85);letter-spacing:.08em;line-height:1.8;
@@ -89,14 +79,6 @@ body::after{
   opacity:0;animation:fI 1s ease 1.2s forwards;
   z-index:2;
 }
-.hero-logos{
-  position:absolute;bottom:40px;right:8vw;
-  display:flex;align-items:center;gap:18px;
-  z-index:2;
-}
-.hero-logo-img{
-  height:96px;width:auto;object-fit:contain;opacity:.9;
-}
 .hero-scroll span{
   font-family:'Jost',sans-serif;font-size:10px;letter-spacing:.25em;
   text-transform:uppercase;color:rgba(250,246,239,.4);
@@ -106,6 +88,79 @@ body::after{
   animation:sLine 2s ease-in-out 1.5s infinite;
 }
 @keyframes sLine{0%,100%{opacity:.3;width:48px}50%{opacity:.8;width:64px}}
+
+/* HERO LOGOS — con tooltip */
+.hero-logos{
+  position:absolute;
+  bottom:40px;
+  right:8vw;
+  display:flex;
+  align-items:center;
+  gap:18px;
+  z-index:2;
+}
+
+.hero-logo-wrap{
+  position:relative;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  cursor:default;
+}
+
+.hero-logo-label{
+  position:absolute;
+  bottom:calc(100% + 12px);
+  left:50%;
+  transform:translateX(-50%) translateY(10px);
+  background:rgba(10,16,8,.78);
+  backdrop-filter:blur(8px);
+  -webkit-backdrop-filter:blur(8px);
+  color:var(--gold2);
+  font-family:'Jost',sans-serif;
+  font-size:11px;
+  font-weight:300;
+  letter-spacing:.12em;
+  text-align:center;
+  line-height:1.6;
+  padding:8px 14px;
+  border-radius:10px;
+  border:1px solid rgba(160,188,106,.3);
+  white-space:nowrap;
+  pointer-events:none;
+  opacity:0;
+  transition:opacity .35s cubic-bezier(.23,1,.32,1),
+             transform .35s cubic-bezier(.23,1,.32,1);
+}
+
+.hero-logo-label::after{
+  content:'';
+  position:absolute;
+  top:100%;
+  left:50%;
+  transform:translateX(-50%);
+  border:5px solid transparent;
+  border-top-color:rgba(10,16,8,.78);
+}
+
+.hero-logo-wrap:hover .hero-logo-label{
+  opacity:1;
+  transform:translateX(-50%) translateY(0);
+}
+
+.hero-logo-wrap:hover .hero-logo-img{
+  filter:drop-shadow(0 0 10px rgba(160,188,106,.55));
+  transform:scale(1.06);
+}
+
+.hero-logo-img{
+  height:96px;
+  width:auto;
+  object-fit:contain;
+  opacity:.9;
+  transition:transform .35s cubic-bezier(.23,1,.32,1),
+             filter .35s ease;
+}
 
 /* SECTION INTRO */
 .section-intro{
@@ -122,7 +177,6 @@ body::after{
   color:var(--muted);letter-spacing:.06em;line-height:1.9;
   max-width:340px;text-align:right;
 }
-
 .rule{
   width:calc(100% - 16vw);margin:28px 8vw 0;height:1px;
   background:linear-gradient(90deg,var(--gold),transparent);opacity:.45;
@@ -147,7 +201,6 @@ body::after{
 }
 .carousel-wrap::before{left:0;background:linear-gradient(90deg,var(--bg),transparent)}
 .carousel-wrap::after{right:0;background:linear-gradient(270deg,var(--bg),transparent)}
-
 .track{
   display:flex;
   gap:var(--gap);
@@ -174,6 +227,7 @@ body::after{
   box-shadow:0 6px 28px rgba(30,40,24,.22);
   transition:transform .5s cubic-bezier(.23,1,.32,1),
              box-shadow .5s cubic-bezier(.23,1,.32,1);
+  cursor:pointer;
 }
 .card:nth-child(1) {animation:cIn .65s cubic-bezier(.23,1,.32,1) .85s both}
 .card:nth-child(2) {animation:cIn .65s cubic-bezier(.23,1,.32,1) .95s both}
@@ -186,7 +240,6 @@ body::after{
 .card:nth-child(9) {animation:cIn .65s cubic-bezier(.23,1,.32,1) 1.65s both}
 .card:nth-child(10){animation:cIn .65s cubic-bezier(.23,1,.32,1) 1.75s both}
 @keyframes cIn{from{opacity:0;transform:translateY(26px) scale(.97)}to{opacity:1;transform:translateY(0) scale(1)}}
-
 .card:hover{
   transform:translateY(-14px) scale(1.025);
   box-shadow:0 28px 56px rgba(30,40,24,.35),0 0 0 1.5px rgba(122,154,74,.35);
@@ -228,6 +281,19 @@ body::after{
   transition:opacity .4s ease .08s,transform .4s ease .08s;
 }
 .card:hover .card-tag{opacity:1;transform:translateY(0)}
+
+/* CLICK HINT SULLE CARD */
+.card-click-hint{
+  position:absolute;top:14px;right:14px;
+  width:28px;height:28px;border-radius:50%;
+  background:rgba(250,246,239,.12);border:1px solid rgba(250,246,239,.25);
+  display:flex;align-items:center;justify-content:center;
+  opacity:0;transform:scale(.8);
+  transition:opacity .4s ease,transform .4s ease;
+  backdrop-filter:blur(4px);
+}
+.card:hover .card-click-hint{opacity:1;transform:scale(1)}
+.card-click-hint svg{width:12px;height:12px;stroke:var(--cream);fill:none;stroke-width:2}
 
 /* PROGRESS */
 .progress-row{
@@ -272,33 +338,16 @@ footer p{
   letter-spacing:.2em;text-transform:uppercase;color:var(--muted);
 }
 
+/* KEYFRAMES GLOBALI */
 @keyframes fU{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
 @keyframes fI{from{opacity:0}to{opacity:1}}
 
+/* RESPONSIVE */
 @media(max-width:640px){
   :root{--card-w:210px;--card-h:300px}
   .section-intro{flex-direction:column;gap:16px}
   .section-intro-right{text-align:left;max-width:100%}
 }
-
-/* ------------------------------------------------ */
-/* AGGIUNTE RICHIESTE: OVERLAY + HINT */
-/* ------------------------------------------------ */
-
-/* CLICK HINT SULLE CARD */
-.card{ cursor:pointer; }
-
-.card-click-hint{
-  position:absolute;top:14px;right:14px;
-  width:28px;height:28px;border-radius:50%;
-  background:rgba(250,246,239,.12);border:1px solid rgba(250,246,239,.25);
-  display:flex;align-items:center;justify-content:center;
-  opacity:0;transform:scale(.8);
-  transition:opacity .4s ease,transform .4s ease;
-  backdrop-filter:blur(4px);
-}
-.card:hover .card-click-hint{opacity:1;transform:scale(1)}
-.card-click-hint svg{width:12px;height:12px;stroke:var(--cream);fill:none;stroke-width:2}
 
 /* BLOCCA SCROLL QUANDO OVERLAY APERTO */
 body.overlay-open{overflow:hidden}
@@ -318,7 +367,7 @@ body.overlay-open{overflow:hidden}
 /* HERO OVERLAY */
 .po-hero{
   position:relative;
-  height:clamp(220px, 40vh, 420px);
+  height:clamp(220px,40vh,420px);
   overflow:hidden;
 }
 .po-hero-img{
@@ -327,30 +376,29 @@ body.overlay-open{overflow:hidden}
   transition:transform .9s cubic-bezier(.23,1,.32,1);
 }
 .page-overlay.is-open .po-hero-img{transform:scale(1)}
-
 .po-hero-veil{
   position:absolute;inset:0;
-  background:linear-gradient(to bottom, rgba(10,16,8,.15), rgba(10,16,8,.72));
+  background:linear-gradient(to bottom,rgba(10,16,8,.15),rgba(10,16,8,.72));
 }
-
 .po-hero-meta{
   position:absolute;bottom:0;left:0;right:0;
   padding:28px 8vw;
   display:flex;justify-content:space-between;flex-wrap:wrap;
-  color: var(--cream);
+  color:var(--cream);
 }
-
 .po-title{
   font-family:'Playfair Display',serif;
   font-size:clamp(28px,5vw,56px);
   color:var(--cream);
 }
-
 .po-tag{
   border:1px solid rgba(160,188,106,.4);
   padding:5px 14px;border-radius:100px;
   font-size:10px;text-transform:uppercase;
-  align-self: flex-end;
+  align-self:flex-end;
+  font-family:'Jost',sans-serif;
+  color:var(--gold2);
+  letter-spacing:.15em;
 }
 
 /* BACK BUTTON */
@@ -360,23 +408,25 @@ body.overlay-open{overflow:hidden}
   background:rgba(10,16,8,.6);
   color:var(--cream);
   text-decoration:none;
-  font-family: 'Jost', sans-serif;
-  font-size: 12px;
-  z-index: 10;
+  font-family:'Jost',sans-serif;
+  font-size:12px;
+  z-index:10;
+  letter-spacing:.1em;
 }
 
 /* BODY OVERLAY */
 .po-body{
   flex:1;overflow:auto;
   padding:48px 8vw;
-  color: var(--mamma);
-  font-family: 'Jost', sans-serif;
-  line-height: 1.8;
+  color:var(--mamma);
+  font-family:'Jost',sans-serif;
+  line-height:1.8;
 }
 </style>
 </head>
 <body>
 
+<!-- HERO -->
 <section class="hero">
   <div class="hero-bg"></div>
   <div class="hero-line"></div>
@@ -387,23 +437,32 @@ body.overlay-open{overflow:hidden}
     <span>Scopri</span>
     <div class="scroll-line"></div>
   </div>
-    <div class="hero-logos">
+
+  <!-- LOGOS CON TOOLTIP -->
+  <div class="hero-logos">
+    <div class="hero-logo-wrap">
       <img class="hero-logo-img" src="img13.png" alt="Logo Liceo"/>
+      <span class="hero-logo-label">Liceo Polivalente<br>Don Quirico Punzi</span>
+    </div>
+    <div class="hero-logo-wrap">
       <img class="hero-logo-img" src="img12.png" alt="Logo FAI"/>
+      <span class="hero-logo-label">Fondo Ambientale<br>Italiano</span>
+    </div>
   </div>
 </section>
 
+<!-- SECTION INTRO -->
 <div class="section-intro">
   <div class="section-intro-left"><h2>Le nostre<br><em>sezioni</em></h2></div>
   <div class="section-intro-right">Trascina le schede per esplorare ogni capitolo della storia della Masseria Lamiola Grande.</div>
 </div>
 <div class="rule"></div>
-
 <div class="drag-row">
   <span>Trascina</span>
   <div class="drag-icon"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
 </div>
 
+<!-- CAROUSEL -->
 <div class="carousel-wrap">
   <div class="track" id="track">
 
@@ -415,9 +474,7 @@ body.overlay-open{overflow:hidden}
         <div class="card-title">Dove siamo</div>
         <span class="card-tag">Posizione</span>
       </div>
-      <div class="card-click-hint">
-        <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-      </div>
+      <div class="card-click-hint"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
     </div>
 
     <div class="card">
@@ -428,9 +485,7 @@ body.overlay-open{overflow:hidden}
         <div class="card-title">Esterni</div>
         <span class="card-tag">Spazi produttivi</span>
       </div>
-      <div class="card-click-hint">
-        <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-      </div>
+      <div class="card-click-hint"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
     </div>
 
     <div class="card">
@@ -441,9 +496,7 @@ body.overlay-open{overflow:hidden}
         <div class="card-title">Storia</div>
         <span class="card-tag">Origini</span>
       </div>
-      <div class="card-click-hint">
-        <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-      </div>
+      <div class="card-click-hint"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
     </div>
 
     <div class="card">
@@ -454,9 +507,7 @@ body.overlay-open{overflow:hidden}
         <div class="card-title">Cortile</div>
         <span class="card-tag">Ambienti di servizio</span>
       </div>
-      <div class="card-click-hint">
-        <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-      </div>
+      <div class="card-click-hint"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
     </div>
 
     <div class="card">
@@ -467,9 +518,7 @@ body.overlay-open{overflow:hidden}
         <div class="card-title">Architettura</div>
         <span class="card-tag">Piano residenziale</span>
       </div>
-      <div class="card-click-hint">
-        <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-      </div>
+      <div class="card-click-hint"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
     </div>
 
     <div class="card">
@@ -480,9 +529,7 @@ body.overlay-open{overflow:hidden}
         <div class="card-title">Paesaggio</div>
         <span class="card-tag">Territorio</span>
       </div>
-      <div class="card-click-hint">
-        <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-      </div>
+      <div class="card-click-hint"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
     </div>
 
     <div class="card">
@@ -493,9 +540,7 @@ body.overlay-open{overflow:hidden}
         <div class="card-title">Tradizioni</div>
         <span class="card-tag">Folclore</span>
       </div>
-      <div class="card-click-hint">
-        <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-      </div>
+      <div class="card-click-hint"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
     </div>
 
     <div class="card">
@@ -506,9 +551,7 @@ body.overlay-open{overflow:hidden}
         <div class="card-title">Video</div>
         <span class="card-tag">Multimediale</span>
       </div>
-      <div class="card-click-hint">
-        <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-      </div>
+      <div class="card-click-hint"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
     </div>
 
     <div class="card">
@@ -519,9 +562,7 @@ body.overlay-open{overflow:hidden}
         <div class="card-title">Galleria Fotografica</div>
         <span class="card-tag">Immagini</span>
       </div>
-      <div class="card-click-hint">
-        <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-      </div>
+      <div class="card-click-hint"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
     </div>
 
     <div class="card">
@@ -532,9 +573,7 @@ body.overlay-open{overflow:hidden}
         <div class="card-title">Le Fonti</div>
         <span class="card-tag">Riferimenti</span>
       </div>
-      <div class="card-click-hint">
-        <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-      </div>
+      <div class="card-click-hint"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
     </div>
 
     <div class="card">
@@ -545,9 +584,7 @@ body.overlay-open{overflow:hidden}
         <div class="card-title">Il FAI</div>
         <span class="card-tag">Fondazione</span>
       </div>
-      <div class="card-click-hint">
-        <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-      </div>
+      <div class="card-click-hint"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
     </div>
 
     <div class="card">
@@ -558,14 +595,13 @@ body.overlay-open{overflow:hidden}
         <div class="card-title">Chi siamo</div>
         <span class="card-tag">Liceo</span>
       </div>
-      <div class="card-click-hint">
-        <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-      </div>
+      <div class="card-click-hint"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
     </div>
 
   </div>
 </div>
 
+<!-- PROGRESS BAR -->
 <div class="progress-row">
   <div class="progress-bar"><div class="progress-fill" id="pFill"></div></div>
   <span class="prog-label" id="pLabel">01 — 12</span>
@@ -575,12 +611,14 @@ body.overlay-open{overflow:hidden}
   </div>
 </div>
 
+<!-- FOOTER -->
 <footer>
   <div class="footer-brand">Masseria <em>Lamiola Grande</em></div>
   <div style="width:80px;height:2px;background:var(--gold);opacity:.5"></div>
   <p>Puglia — Raccontiamo il nostro territorio</p>
 </footer>
 
+<!-- PAGE OVERLAY -->
 <div class="page-overlay" id="pageOverlay">
   <div class="po-hero">
     <img class="po-hero-img" id="poHeroImg" src=""/>
@@ -588,7 +626,7 @@ body.overlay-open{overflow:hidden}
     <a href="#" class="po-back" id="poBack">← Torna</a>
     <div class="po-hero-meta">
       <div>
-        <div id="poNum" style="font-family:'Jost',sans-serif; font-size:12px; letter-spacing:.2em; color:var(--gold2)"></div>
+        <div id="poNum" style="font-family:'Jost',sans-serif;font-size:12px;letter-spacing:.2em;color:var(--gold2)"></div>
         <div class="po-title" id="poTitle"></div>
       </div>
       <span class="po-tag" id="poTag"></span>
@@ -606,8 +644,7 @@ body.overlay-open{overflow:hidden}
   var pLabel  = document.getElementById('pLabel');
   var prevBtn = document.getElementById('prevBtn');
   var nextBtn = document.getElementById('nextBtn');
-
-  var CARD_W = 260, GAP = 20, STEP = CARD_W + GAP;
+  var CARD_W  = 260, GAP = 20, STEP = CARD_W + GAP;
 
   function clamp(v,lo,hi){ return v<lo?lo:v>hi?hi:v; }
   function maxScroll(){ return track.scrollWidth - track.clientWidth; }
@@ -644,14 +681,14 @@ body.overlay-open{overflow:hidden}
     smoothTo(Math.round(track.scrollLeft / STEP) * STEP);
   }
 
-  var mouseDown   = false;
-  var mouseStartX = 0;
-  var mouseStartS = 0;
-  var mouseLastX  = 0;
-  var mouseVel    = 0;
-  var inertiaRaf  = null;
+  var mouseDown  = false;
+  var mouseStartX = 0, mouseStartS = 0, mouseLastX = 0, mouseVel = 0;
+  var inertiaRaf = null;
 
-  function stopInertia(){ cancelAnimationFrame(inertiaRaf); cancelAnimationFrame(animRaf); }
+  function stopInertia(){
+    cancelAnimationFrame(inertiaRaf);
+    cancelAnimationFrame(animRaf);
+  }
 
   track.addEventListener('mousedown', function(e){
     stopInertia();
@@ -686,22 +723,19 @@ body.overlay-open{overflow:hidden}
     })();
   });
 
-  var tStartX = 0, tStartS = 0, tLastX = 0, tVel = 0;
+  var tStartX=0, tStartS=0, tLastX=0, tVel=0;
   track.addEventListener('touchstart', function(e){
     stopInertia();
     tStartX = e.touches[0].clientX;
     tStartS = track.scrollLeft;
-    tLastX  = tStartX;
-    tVel    = 0;
-  }, {passive:true});
-
+    tLastX  = tStartX; tVel = 0;
+  },{passive:true});
   track.addEventListener('touchmove', function(e){
-    tVel    = tLastX - e.touches[0].clientX;
-    tLastX  = e.touches[0].clientX;
+    tVel = tLastX - e.touches[0].clientX;
+    tLastX = e.touches[0].clientX;
     track.scrollLeft = tStartS + (tStartX - e.touches[0].clientX);
     updateProgress();
-  }, {passive:true});
-
+  },{passive:true});
   track.addEventListener('touchend', function(){
     var v = tVel;
     (function inertia(){
@@ -724,48 +758,39 @@ body.overlay-open{overflow:hidden}
   track.addEventListener('scroll', updateProgress, {passive:true});
   updateProgress();
 
-/* LOGICA JS OVERLAY INTEGRATA */
+  /* ---- OVERLAY ---- */
   var overlay    = document.getElementById('pageOverlay');
   var poHeroImg  = document.getElementById('poHeroImg');
   var poNum      = document.getElementById('poNum');
   var poTitle    = document.getElementById('poTitle');
   var poTag      = document.getElementById('poTag');
   var poBack     = document.getElementById('poBack');
-
-  var cards = document.querySelectorAll('.card');
+  var cards      = document.querySelectorAll('.card');
 
   cards.forEach(function(card){
-    // Usiamo dblclick
-    card.addEventListener('dblclick', function(e){
-      // Fermiamo qualsiasi movimento del carosello
+    card.addEventListener('dblclick', function(){
       stopInertia();
-      
-      // Popoliamo l'overlay
-      poHeroImg.src = card.querySelector('img').src;
-      poNum.textContent = card.querySelector('.card-num').textContent;
-      poTitle.innerHTML = card.querySelector('.card-title').innerHTML;
-      poTag.textContent = card.querySelector('.card-tag').textContent;
-
-      // Apriamo l'overlay
+      poHeroImg.src        = card.querySelector('img').src;
+      poNum.textContent    = card.querySelector('.card-num').textContent;
+      poTitle.innerHTML    = card.querySelector('.card-title').innerHTML;
+      poTag.textContent    = card.querySelector('.card-tag').textContent;
       overlay.classList.add('is-open');
       document.body.classList.add('overlay-open');
     });
   });
-  /* LOGICA PER CHIUDERE L'OVERLAY */
-poBack.addEventListener('click', function(e) {
-  e.preventDefault(); // Impedisce al link di ricaricare la pagina
-  overlay.classList.remove('is-open');
-  document.body.classList.remove('overlay-open');
-});
 
-// Opzionale: chiudi l'overlay anche premendo il tasto ESC
-document.addEventListener('keydown', function(e) {
-  if (e.key === 'Escape' && overlay.classList.contains('is-open')) {
+  poBack.addEventListener('click', function(e){
+    e.preventDefault();
     overlay.classList.remove('is-open');
     document.body.classList.remove('overlay-open');
-  }
-});
-  
+  });
+
+  document.addEventListener('keydown', function(e){
+    if(e.key==='Escape' && overlay.classList.contains('is-open')){
+      overlay.classList.remove('is-open');
+      document.body.classList.remove('overlay-open');
+    }
+  });
 })();
 </script>
 </body>
