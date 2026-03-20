@@ -324,7 +324,7 @@ body::after{
   flex:1;max-width:200px;height:2px;
   background:rgba(58,74,46,.15);border-radius:100px;overflow:hidden;
 }
-.progress-fill{height:100%;background:var(--gold);border-radius:100px;transition:width .25s ease;width:10%}
+.progress-fill{height:100%;background:var(--gold);border-radius:100px;transition:width .25s ease;width:0%}
 .prog-label{font-family:'Jost',sans-serif;font-size:11px;letter-spacing:.2em;color:var(--muted)}
 .nav-btns{margin-left:auto;display:flex;gap:10px}
 .nav-btn{
@@ -1074,9 +1074,8 @@ body.overlay-open{overflow:hidden}
   function updateProgress(){
   var max = maxScroll(); if(max<=0) return;
   var pct = track.scrollLeft / max;
-  var idx = Math.round(pct * 11) + 1;
-  idx = Math.max(1, Math.min(12, idx));
-  pFill.style.width = (10 + (idx-1)/11*90) + '%';
+  pFill.style.width = Math.round(pct * 100) + '%';
+  var idx = Math.min(12, Math.round(pct * 11) + 1);
   pLabel.textContent = (idx<10?'0'+idx:idx) + ' — 12';
 }
 
