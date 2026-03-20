@@ -4,11 +4,9 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Masseria Lamiola Grande</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Jost:wght@200;300;400&display=swap" rel="stylesheet"/>
-
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Jost:wght@200;300;400&display=swap" rel="stylesheet"/>
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 
 :root{
   --bg:#f0ead6;
@@ -24,132 +22,539 @@
   --r:18px;
 }
 
-body{background:var(--bg);overflow-x:hidden;font-family:'Jost',sans-serif}
+html,body{height:100%;background:var(--bg);overflow-x:hidden}
+
+body::after{
+  content:'';position:fixed;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events:none;z-index:9999;mix-blend-mode:multiply;opacity:.45
+}
 
 /* HERO */
 .hero{
   min-height:100vh;
-  display:flex;flex-direction:column;justify-content:center;
-  padding:80px 8vw;
-  position:relative;
+  display:flex;flex-direction:column;justify-content:center;align-items:flex-start;
+  padding:80px 8vw 60px;
+  position:relative;overflow:hidden;
   background:#1e2818;
 }
 
 .hero-bg{
   position:absolute;inset:0;
-  background:url('https://picsum.photos/1920/1080?blur=2') center/cover no-repeat;
+  background:url('img0.jpeg') center/cover no-repeat;
   opacity:.85;
 }
 
+/* very light dark veil so text stays readable */
 .hero::before{
   content:'';position:absolute;inset:0;
-  background:rgba(0,0,0,.35);
+  background:rgba(10,16,8,.32);
+  z-index:1;
+}
+
+.hero-line{
+  position:absolute;left:8vw;top:0;bottom:0;width:1px;
+  background:linear-gradient(to bottom,transparent,var(--gold2) 30%,var(--gold2) 70%,transparent);
+  opacity:.5;z-index:2;
+}
+
+.hero-eyebrow{
+  font-family:'Jost',sans-serif;font-weight:300;font-size:11px;
+  letter-spacing:.35em;text-transform:uppercase;color:var(--gold2);
+  margin-left:24px;margin-bottom:20px;
+  opacity:0;animation:fU .7s ease .2s forwards;
+  position:relative;z-index:2;
 }
 
 .hero-title{
-  font-family:'Playfair Display',serif;
-  font-size:clamp(44px,8vw,100px);
-  color:white;
-  position:relative;
+  font-family:'Playfair Display',serif;font-weight:400;
+  font-size:clamp(48px,8vw,110px);line-height:.95;letter-spacing:-.02em;
+  color:var(--cream);margin-left:24px;
+  opacity:0;animation:fU .8s ease .35s forwards;
+  position:relative;z-index:2;
+}
+.hero-title em{font-style:italic;color:var(--gold2)}
+
+.hero-sub{
+  font-family:'Jost',sans-serif;font-weight:200;font-size:14px;
+  color:rgba(250,246,239,.85);letter-spacing:.08em;line-height:1.8;
+  margin-left:24px;margin-top:28px;max-width:380px;
+  opacity:0;animation:fU .8s ease .5s forwards;
+  position:relative;z-index:2;
 }
 
+.hero-scroll{
+  position:absolute;bottom:40px;left:8vw;margin-left:24px;
+  display:flex;align-items:center;gap:14px;
+  opacity:0;animation:fI 1s ease 1.2s forwards;
+  z-index:2;
+}
+.hero-scroll span{
+  font-family:'Jost',sans-serif;font-size:10px;letter-spacing:.25em;
+  text-transform:uppercase;color:rgba(250,246,239,.4);
+}
+.scroll-line{
+  width:48px;height:1px;background:var(--gold);opacity:.5;
+  animation:sLine 2s ease-in-out 1.5s infinite;
+}
+@keyframes sLine{0%,100%{opacity:.3;width:48px}50%{opacity:.8;width:64px}}
+
+/* SECTION INTRO */
+.section-intro{
+  padding:80px 8vw 0;display:flex;align-items:flex-end;
+  justify-content:space-between;gap:32px;flex-wrap:wrap;
+}
+.section-intro-left h2{
+  font-family:'Playfair Display',serif;font-size:clamp(32px,4vw,52px);
+  font-weight:400;color:var(--stone);letter-spacing:-.02em;line-height:1.1;
+}
+.section-intro-left h2 em{font-style:italic;color:var(--gold)}
+.section-intro-right{
+  font-family:'Jost',sans-serif;font-weight:200;font-size:13px;
+  color:var(--muted);letter-spacing:.06em;line-height:1.9;
+  max-width:340px;text-align:right;
+}
+
+.rule{
+  width:calc(100% - 16vw);margin:28px 8vw 0;height:1px;
+  background:linear-gradient(90deg,var(--gold),transparent);opacity:.45;
+}
+
+/* DRAG HINT */
+.drag-row{
+  padding:18px 8vw 0;display:flex;align-items:center;gap:12px;justify-content:flex-end;
+}
+.drag-row span{
+  font-family:'Jost',sans-serif;font-size:10px;
+  letter-spacing:.25em;text-transform:uppercase;color:var(--muted);
+}
+.drag-icon{animation:nudge 2.5s ease-in-out 1s infinite}
+.drag-icon svg{width:20px;height:20px;stroke:var(--gold);fill:none;stroke-width:1.5}
+@keyframes nudge{0%,100%{transform:translateX(0)}40%{transform:translateX(8px)}70%{transform:translateX(-4px)}}
+
 /* CAROUSEL */
+.carousel-wrap{position:relative;padding:24px 0 40px;overflow:hidden}
+.carousel-wrap::before,.carousel-wrap::after{
+  content:'';position:absolute;top:0;bottom:40px;width:60px;z-index:10;pointer-events:none;
+}
+.carousel-wrap::before{left:0;background:linear-gradient(90deg,var(--bg),transparent)}
+.carousel-wrap::after{right:0;background:linear-gradient(270deg,var(--bg),transparent)}
+
 .track{
   display:flex;
   gap:var(--gap);
-  padding:40px 8vw;
-  overflow-x:auto;
+  padding:16px 8vw 20px;
+  overflow-x:scroll;
   scrollbar-width:none;
+  -ms-overflow-style:none;
+  cursor:grab;
+  user-select:none;
+  -webkit-user-select:none;
+  -webkit-overflow-scrolling:touch;
+  will-change:scroll-position;
 }
 .track::-webkit-scrollbar{display:none}
+.track.is-dragging{cursor:grabbing;scroll-snap-type:none}
 
+/* CARDS */
 .card{
   flex:0 0 var(--card-w);
   height:var(--card-h);
-  border-radius:18px;
-  overflow:hidden;
-  position:relative;
-  box-shadow:0 10px 30px rgba(0,0,0,.2);
-  transform:translateZ(0);
-  backface-visibility:hidden;
-  transition:.4s;
+  border-radius:var(--r);
+  overflow:hidden;position:relative;
+  background:var(--stone);
+  box-shadow:0 6px 28px rgba(30,40,24,.22);
+  transition:transform .5s cubic-bezier(.23,1,.32,1),
+             box-shadow .5s cubic-bezier(.23,1,.32,1);
 }
+.card:nth-child(1) {animation:cIn .65s cubic-bezier(.23,1,.32,1) .85s both}
+.card:nth-child(2) {animation:cIn .65s cubic-bezier(.23,1,.32,1) .95s both}
+.card:nth-child(3) {animation:cIn .65s cubic-bezier(.23,1,.32,1) 1.05s both}
+.card:nth-child(4) {animation:cIn .65s cubic-bezier(.23,1,.32,1) 1.15s both}
+.card:nth-child(5) {animation:cIn .65s cubic-bezier(.23,1,.32,1) 1.25s both}
+.card:nth-child(6) {animation:cIn .65s cubic-bezier(.23,1,.32,1) 1.35s both}
+.card:nth-child(7) {animation:cIn .65s cubic-bezier(.23,1,.32,1) 1.45s both}
+.card:nth-child(8) {animation:cIn .65s cubic-bezier(.23,1,.32,1) 1.55s both}
+.card:nth-child(9) {animation:cIn .65s cubic-bezier(.23,1,.32,1) 1.65s both}
+.card:nth-child(10){animation:cIn .65s cubic-bezier(.23,1,.32,1) 1.75s both}
+@keyframes cIn{from{opacity:0;transform:translateY(26px) scale(.97)}to{opacity:1;transform:translateY(0) scale(1)}}
 
 .card:hover{
-  transform:translateY(-10px) scale(1.03);
+  transform:translateY(-14px) scale(1.025);
+  box-shadow:0 28px 56px rgba(30,40,24,.35),0 0 0 1.5px rgba(122,154,74,.35);
+  z-index:3;
 }
-
-.card img{
-  width:100%;height:100%;
-  object-fit:cover;
+.card-img{
+  width:100%;height:100%;object-fit:cover;display:block;
+  transition:transform .7s cubic-bezier(.23,1,.32,1);
+  pointer-events:none;-webkit-user-drag:none;
 }
-
+.card:hover .card-img{transform:scale(1.07)}
 .card-overlay{
   position:absolute;inset:0;
-  background:linear-gradient(to top,rgba(0,0,0,.7),transparent);
+  background:linear-gradient(to top,rgba(30,40,24,.92) 0%,rgba(30,40,24,.3) 45%,rgba(30,40,24,.04) 100%);
 }
-
 .card-body{
-  position:absolute;bottom:0;padding:20px;color:white;
+  position:absolute;bottom:0;left:0;right:0;
+  padding:22px 18px 18px;
+  transform:translateY(6px);
+  transition:transform .5s cubic-bezier(.23,1,.32,1);
+}
+.card:hover .card-body{transform:translateY(0)}
+.card-num{
+  font-family:'Jost',sans-serif;font-size:10px;
+  letter-spacing:.25em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:6px;opacity:.9;
+}
+.card-title{
+  font-family:'Playfair Display',serif;font-size:18px;
+  font-weight:400;color:var(--cream);line-height:1.25;
+}
+.card-title em{font-style:italic;color:var(--gold2)}
+.card-tag{
+  display:inline-block;margin-top:9px;padding:3px 10px;
+  border-radius:100px;border:1px solid rgba(122,154,74,.5);
+  font-family:'Jost',sans-serif;font-size:10px;
+  letter-spacing:.15em;text-transform:uppercase;color:var(--gold2);
+  opacity:0;transform:translateY(5px);
+  transition:opacity .4s ease .08s,transform .4s ease .08s;
+}
+.card:hover .card-tag{opacity:1;transform:translateY(0)}
+
+/* PROGRESS */
+.progress-row{
+  padding:0 8vw 16px;display:flex;align-items:center;gap:18px;
+}
+.progress-bar{
+  flex:1;max-width:200px;height:2px;
+  background:rgba(58,74,46,.15);border-radius:100px;overflow:hidden;
+}
+.progress-fill{
+  height:100%;background:var(--gold);border-radius:100px;
+  transition:width .25s ease;width:10%;
+}
+.prog-label{
+  font-family:'Jost',sans-serif;font-size:11px;
+  letter-spacing:.2em;color:var(--muted);
+}
+.nav-btns{margin-left:auto;display:flex;gap:10px}
+.nav-btn{
+  width:38px;height:38px;border-radius:50%;
+  border:1.5px solid rgba(122,154,74,.35);
+  background:transparent;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  transition:all .3s ease;color:var(--gold);
+}
+.nav-btn:hover{background:rgba(122,154,74,.15);border-color:var(--gold);transform:scale(1.08)}
+.nav-btn svg{width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:2}
+
+/* FOOTER */
+footer{
+  padding:44px 8vw 36px;
+  border-top:1px solid rgba(58,74,46,.2);
+  display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;
+}
+.footer-brand{
+  font-family:'Playfair Display',serif;font-size:14px;
+  font-weight:400;color:var(--stone);letter-spacing:.05em;
+}
+.footer-brand em{font-style:italic;color:var(--gold)}
+footer p{
+  font-family:'Jost',sans-serif;font-size:11px;
+  letter-spacing:.2em;text-transform:uppercase;color:var(--muted);
 }
 
-/* NAV */
-.controls{
-  display:flex;justify-content:center;gap:10px;margin-bottom:40px;
-}
+@keyframes fU{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fI{from{opacity:0}to{opacity:1}}
 
-button{
-  padding:10px 16px;
-  border:none;
-  background:var(--gold);
-  color:white;
-  cursor:pointer;
+@media(max-width:640px){
+  :root{--card-w:210px;--card-h:300px}
+  .section-intro{flex-direction:column;gap:16px}
+  .section-intro-right{text-align:left;max-width:100%}
 }
 </style>
 </head>
-
 <body>
 
 <section class="hero">
   <div class="hero-bg"></div>
-  <h1 class="hero-title">Masseria Lamiola Grande</h1>
+  <div class="hero-line"></div>
+  <p class="hero-eyebrow">Puglia — Valle d'Itria</p>
+  <h1 class="hero-title">Masseria<br><em>Lamiola</em><br>Grande</h1>
+  <p class="hero-sub">Un luogo dove la pietra, l'ulivo e il tempo si incontrano.<br>Esplora la storia, il paesaggio e l'anima di questa terra.</p>
+  <div class="hero-scroll">
+    <span>Scopri</span>
+    <div class="scroll-line"></div>
+  </div>
 </section>
 
-<div class="track" id="track">
+<div class="section-intro">
+  <div class="section-intro-left"><h2>Le nostre<br><em>sezioni</em></h2></div>
+  <div class="section-intro-right">Trascina le schede per esplorare ogni capitolo della storia della Masseria Lamiola Grande.</div>
+</div>
+<div class="rule"></div>
 
-  <!-- CARD TEMPLATE -->
-  <div class="card"><img src="https://picsum.photos/400/600?1"><div class="card-overlay"></div><div class="card-body">Dove ci troviamo</div></div>
-  <div class="card"><img src="https://picsum.photos/400/600?2"><div class="card-overlay"></div><div class="card-body">Storia</div></div>
-  <div class="card"><img src="https://picsum.photos/400/600?3"><div class="card-overlay"></div><div class="card-body">Territorio</div></div>
-  <div class="card"><img src="https://picsum.photos/400/600?4"><div class="card-overlay"></div><div class="card-body">Architettura</div></div>
-  <div class="card"><img src="https://picsum.photos/400/600?5"><div class="card-overlay"></div><div class="card-body">Paesaggio</div></div>
-  <div class="card"><img src="https://picsum.photos/400/600?6"><div class="card-overlay"></div><div class="card-body">Tradizioni</div></div>
-  <div class="card"><img src="https://picsum.photos/400/600?7"><div class="card-overlay"></div><div class="card-body">Video</div></div>
-  <div class="card"><img src="https://picsum.photos/400/600?8"><div class="card-overlay"></div><div class="card-body">Galleria</div></div>
-
+<div class="drag-row">
+  <span>Trascina</span>
+  <div class="drag-icon"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
 </div>
 
-<div class="controls">
-  <button onclick="scrollTrack(-1)">←</button>
-  <button onclick="scrollTrack(1)">→</button>
+<div class="carousel-wrap">
+  <div class="track" id="track">
+
+    <div class="card">
+      <img class="card-img" src="img1.jpeg" alt="" draggable="false"/>
+      <div class="card-overlay"></div>
+      <div class="card-body">
+        <div class="card-num">01 — 10</div>
+        <div class="card-title">Dove ci<br><em>troviamo?</em></div>
+        <span class="card-tag">Posizione</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <img class="card-img" src="img2.jpeg" alt="" draggable="false"/>
+      <div class="card-overlay"></div>
+      <div class="card-body">
+        <div class="card-num">02 — 10</div>
+        <div class="card-title">La<br><em>Storia</em></div>
+        <span class="card-tag">Origini</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <img class="card-img" src="img3.jpeg" alt="" draggable="false"/>
+      <div class="card-overlay"></div>
+      <div class="card-body">
+        <div class="card-num">03 — 10</div>
+        <div class="card-title">Il<br><em>Territorio</em></div>
+        <span class="card-tag">Paesaggio</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <img class="card-img" src="img4.jpg" alt="" draggable="false"/>
+      <div class="card-overlay"></div>
+      <div class="card-body">
+        <div class="card-num">04 — 10</div>
+        <div class="card-title">L'<em>Architettura</em></div>
+        <span class="card-tag">Strutture</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <img class="card-img" src="img5.jpeg" alt="" draggable="false"/>
+      <div class="card-overlay"></div>
+      <div class="card-body">
+        <div class="card-num">05 — 10</div>
+        <div class="card-title">Il<br><em>Paesaggio</em></div>
+        <span class="card-tag">Natura</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <img class="card-img" src="img6.jpg" alt="" draggable="false"/>
+      <div class="card-overlay"></div>
+      <div class="card-body">
+        <div class="card-num">06 — 10</div>
+        <div class="card-title">Le<br><em>Tradizioni</em></div>
+        <span class="card-tag">Cultura</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <img class="card-img" src="img7.png" alt="" draggable="false"/>
+      <div class="card-overlay"></div>
+      <div class="card-body">
+        <div class="card-num">07 — 10</div>
+        <div class="card-title"><em>Video</em></div>
+        <span class="card-tag">Multimediale</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <img class="card-img" src="img8.jpeg" alt="" draggable="false"/>
+      <div class="card-overlay"></div>
+      <div class="card-body">
+        <div class="card-num">08 — 10</div>
+        <div class="card-title">Galleria<br><em>Fotografica</em></div>
+        <span class="card-tag">Immagini</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <img class="card-img" src="img9.jpeg" alt="" draggable="false"/>
+      <div class="card-overlay"></div>
+      <div class="card-body">
+        <div class="card-num">09 — 10</div>
+        <div class="card-title">Chi<br><em>siamo</em></div>
+        <span class="card-tag">Persone</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <img class="card-img" src="img10.jpeg" alt="" draggable="false"/>
+      <div class="card-overlay"></div>
+      <div class="card-body">
+        <div class="card-num">10 — 10</div>
+        <div class="card-title">Le<br><em>Fonti</em></div>
+        <span class="card-tag">Riferimenti</span>
+      </div>
+    </div>
+
+  </div>
 </div>
+
+<div class="progress-row">
+  <div class="progress-bar"><div class="progress-fill" id="pFill"></div></div>
+  <span class="prog-label" id="pLabel">01 — 10</span>
+  <div class="nav-btns">
+    <button class="nav-btn" id="prevBtn"><svg viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></button>
+    <button class="nav-btn" id="nextBtn"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-brand">Masseria <em>Lamiola Grande</em></div>
+  <div style="width:40px;height:1px;background:var(--gold);opacity:.5"></div>
+  <p>Puglia — Valle d'Itria</p>
+</footer>
 
 <script>
-const track = document.getElementById("track");
+(function(){
+  var track   = document.getElementById('track');
+  var pFill   = document.getElementById('pFill');
+  var pLabel  = document.getElementById('pLabel');
+  var prevBtn = document.getElementById('prevBtn');
+  var nextBtn = document.getElementById('nextBtn');
 
-function getStep(){
-  const card = track.querySelector(".card");
-  const gap = 20;
-  return card.offsetWidth + gap;
-}
+  var CARD_W = 260, GAP = 20, STEP = CARD_W + GAP;
 
-function scrollTrack(dir){
-  track.scrollBy({
-    left: dir * getStep(),
-    behavior: "smooth"
+  /* helpers */
+  function clamp(v,lo,hi){ return v<lo?lo:v>hi?hi:v; }
+  function maxScroll(){ return track.scrollWidth - track.clientWidth; }
+
+  function updateProgress(){
+    var max = maxScroll();
+    if(max<=0) return;
+    var pct = track.scrollLeft / max;
+    pFill.style.width = (10 + pct*90) + '%';
+    var idx = Math.min(10, Math.round(track.scrollLeft / STEP) + 1);
+    pLabel.textContent = (idx<10?'0'+idx:idx) + ' — 10';
+  }
+
+  /* smooth scroll */
+  var animRaf = null;
+  function smoothTo(target){
+    cancelAnimationFrame(animRaf);
+    var start = track.scrollLeft;
+    var end   = clamp(target, 0, maxScroll());
+    var dist  = end - start;
+    if(Math.abs(dist)<1) return;
+    var t = 0;
+    function tick(){
+      t += 0.048;
+      if(t>=1){ track.scrollLeft = end; updateProgress(); return; }
+      var ease = 1 - Math.pow(1-t, 4);
+      track.scrollLeft = start + dist*ease;
+      updateProgress();
+      animRaf = requestAnimationFrame(tick);
+    }
+    animRaf = requestAnimationFrame(tick);
+  }
+
+  function snapNearest(){
+    smoothTo(Math.round(track.scrollLeft / STEP) * STEP);
+  }
+
+  /* ── MOUSE DRAG ── */
+  var mouseDown   = false;
+  var mouseStartX = 0;
+  var mouseStartS = 0;
+  var mouseLastX  = 0;
+  var mouseVel    = 0;
+  var inertiaRaf  = null;
+
+  function stopInertia(){ cancelAnimationFrame(inertiaRaf); cancelAnimationFrame(animRaf); }
+
+  track.addEventListener('mousedown', function(e){
+    stopInertia();
+    mouseDown   = true;
+    mouseStartX = e.clientX;
+    mouseStartS = track.scrollLeft;
+    mouseLastX  = e.clientX;
+    mouseVel    = 0;
+    track.classList.add('is-dragging');
+    e.preventDefault();
   });
-}
-</script>
 
+  document.addEventListener('mousemove', function(e){
+    if(!mouseDown) return;
+    mouseVel    = mouseLastX - e.clientX;
+    mouseLastX  = e.clientX;
+    track.scrollLeft = mouseStartS + (mouseStartX - e.clientX);
+    updateProgress();
+  });
+
+  document.addEventListener('mouseup', function(){
+    if(!mouseDown) return;
+    mouseDown = false;
+    track.classList.remove('is-dragging');
+    var v = mouseVel;
+    (function inertia(){
+      if(Math.abs(v)<0.5){ snapNearest(); return; }
+      track.scrollLeft += v;
+      v *= 0.90;
+      updateProgress();
+      inertiaRaf = requestAnimationFrame(inertia);
+    })();
+  });
+
+  /* ── TOUCH ── */
+  var tStartX = 0, tStartS = 0, tLastX = 0, tVel = 0;
+
+  track.addEventListener('touchstart', function(e){
+    stopInertia();
+    tStartX = e.touches[0].clientX;
+    tStartS = track.scrollLeft;
+    tLastX  = tStartX;
+    tVel    = 0;
+  }, {passive:true});
+
+  track.addEventListener('touchmove', function(e){
+    tVel    = tLastX - e.touches[0].clientX;
+    tLastX  = e.touches[0].clientX;
+    track.scrollLeft = tStartS + (tStartX - e.touches[0].clientX);
+    updateProgress();
+  }, {passive:true});
+
+  track.addEventListener('touchend', function(){
+    var v = tVel;
+    (function inertia(){
+      if(Math.abs(v)<0.5){ snapNearest(); return; }
+      track.scrollLeft += v;
+      v *= 0.90;
+      updateProgress();
+      inertiaRaf = requestAnimationFrame(inertia);
+    })();
+  });
+
+  /* ── BUTTONS ── */
+  prevBtn.addEventListener('click', function(){ stopInertia(); smoothTo(track.scrollLeft - STEP); });
+  nextBtn.addEventListener('click', function(){ stopInertia(); smoothTo(track.scrollLeft + STEP); });
+
+  /* ── KEYBOARD ── */
+  document.addEventListener('keydown', function(e){
+    if(e.key==='ArrowLeft' ){ stopInertia(); smoothTo(track.scrollLeft - STEP); }
+    if(e.key==='ArrowRight'){ stopInertia(); smoothTo(track.scrollLeft + STEP); }
+  });
+
+  /* scroll event fallback */
+  track.addEventListener('scroll', updateProgress, {passive:true});
+
+  updateProgress();
+})();
+</script>
 </body>
 </html>
+
