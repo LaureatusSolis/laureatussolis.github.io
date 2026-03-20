@@ -750,6 +750,20 @@ body.overlay-open{overflow:hidden}
       document.body.classList.add('overlay-open');
     });
   });
+  /* LOGICA PER CHIUDERE L'OVERLAY */
+poBack.addEventListener('click', function(e) {
+  e.preventDefault(); // Impedisce al link di ricaricare la pagina
+  overlay.classList.remove('is-open');
+  document.body.classList.remove('overlay-open');
+});
+
+// Opzionale: chiudi l'overlay anche premendo il tasto ESC
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape' && overlay.classList.contains('is-open')) {
+    overlay.classList.remove('is-open');
+    document.body.classList.remove('overlay-open');
+  }
+});
   
 })();
 </script>
