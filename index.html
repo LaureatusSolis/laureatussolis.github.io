@@ -1150,8 +1150,6 @@ body.overlay-open{overflow:hidden}
   var poMiniNum  = document.getElementById('poMiniNum');
   var poMiniTitle= document.getElementById('poMiniTitle');
   var poBack     = document.getElementById('poBack');
-  var tornaBtn = document.getElementById('tornaBtn');
-  tornaBtn.addEventListener('click', function(){ closeOverlay(); });
   var poBody     = document.getElementById('poBody');
   var poDesc     = document.getElementById('poDesc');
   var cards      = document.querySelectorAll('.card');
@@ -1298,6 +1296,8 @@ body.overlay-open{overflow:hidden}
     poBody.scrollTop = 0;
     tornaBtn.style.display = 'none';
   }
+  var tornaBtn = document.getElementById('tornaBtn');
+    tornaBtn.addEventListener('click', function(){ closeOverlay(); });
 
   poBack.addEventListener('click', function(e){ e.preventDefault(); closeOverlay(); });
   document.addEventListener('keydown', function(e){
