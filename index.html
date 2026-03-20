@@ -484,7 +484,8 @@ body.overlay-open{overflow:hidden}
       poHero.classList.remove('shrunk');
       poNav.classList.remove('visible');
       _skipScroll=true; poBody.scrollTop=0;
-      if(idx===7){ poHero.classList.add('shrunk'); poNav.classList.add('visible'); }
+      if(idx===7||idx===9||idx===10){ poHero.classList.add('shrunk'); }
+      if(idx===7){ poNav.classList.add('visible'); }
       updateNavButtons(idx);
       requestAnimationFrame(function(){poDesc.classList.remove('switching');poHeroImg.classList.remove('switching');});
     }
@@ -520,7 +521,7 @@ body.overlay-open{overflow:hidden}
   var _shortCards={9:true,10:true};
   poBody.addEventListener('scroll',function(){
     if(_skipScroll){_skipScroll=false;return;}
-    if(currentCardIdx===7) return; /* video: banner fisso, gestito in applyContent */
+    if(currentCardIdx===7||currentCardIdx===9||currentCardIdx===10) return;
     var st=poBody.scrollTop;
     var dist=poBody.scrollHeight-st-poBody.clientHeight;
     poNav.classList.toggle('visible',dist<120);
