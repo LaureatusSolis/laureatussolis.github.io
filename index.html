@@ -361,12 +361,12 @@ footer p{font-family:'Jost',sans-serif;font-size:11px;letter-spacing:.2em;text-t
   /* DRAG HINT */
   .drag-row{padding:14px 6vw 0}
 
-  /* CAROUSEL — snap al centro */
+  /* CAROUSEL — snap al centro (proximity = non interferisce col drag) */
   .carousel-wrap{padding:20px 0 32px}
   .track{
     padding:12px 9vw 16px;
-    scroll-snap-type:x mandatory;
-    -webkit-scroll-snap-type:x mandatory;
+    scroll-snap-type:x proximity;
+    -webkit-scroll-snap-type:x proximity;
     scroll-padding:0 9vw;
   }
   .card{scroll-snap-align:center;border-radius:14px}
@@ -418,6 +418,107 @@ body.overlay-open{overflow:hidden}
   flex:1;overflow:auto;padding:48px 8vw;
   color:var(--mamma);font-family:'Jost',sans-serif;line-height:1.8;
 }
+
+
+/* DESCRIZIONE OVERLAY */
+.po-desc{
+  font-family:'Jost',sans-serif;
+  font-weight:300;
+  font-size:15px;
+  color:var(--stone);
+  letter-spacing:.04em;
+  line-height:2;
+  padding:8px 0;
+  border-left:3px solid var(--gold);
+  padding-left:20px;
+  margin-top:8px;
+}
+
+/* ================================================
+   GALLERIA FOTOGRAFICA — MASONRY
+   ================================================ */
+.gallery-wrap{
+  margin-top: 16px;
+}
+.gallery-group{
+  margin-bottom: 56px;
+}
+.gallery-group-title{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(18px,3vw,26px);
+  font-weight:400;
+  color:var(--stone);
+  letter-spacing:-.01em;
+  line-height:1.1;
+  margin-bottom:6px;
+  padding-bottom:12px;
+  border-bottom:1px solid rgba(122,154,74,.3);
+  display:flex;
+  align-items:center;
+  gap:14px;
+}
+.gallery-group-title em{
+  font-style:italic;
+  color:var(--gold);
+}
+.gallery-group-title::before{
+  content:'';
+  display:inline-block;
+  width:28px;height:2px;
+  background:var(--gold);
+  border-radius:2px;
+  flex-shrink:0;
+}
+.gallery-group-num{
+  font-family:'Jost',sans-serif;
+  font-size:10px;
+  letter-spacing:.25em;
+  color:var(--muted);
+  text-transform:uppercase;
+  margin-left:auto;
+}
+.masonry{
+  column-count:3;
+  column-gap:12px;
+}
+@media(max-width:640px){
+  .masonry{column-count:2;column-gap:8px}
+  .gallery-group-title{font-size:16px}
+}
+.masonry-item{
+  break-inside:avoid;
+  margin-bottom:12px;
+  border-radius:10px;
+  overflow:hidden;
+  position:relative;
+  background:rgba(58,74,46,.08);
+  cursor:pointer;
+}
+.masonry-item img{
+  width:100%;
+  display:block;
+  object-fit:cover;
+  transition:transform .5s cubic-bezier(.23,1,.32,1);
+}
+.masonry-item:hover img{transform:scale(1.04)}
+.masonry-item.tall img{height:320px;object-fit:cover}
+.masonry-item.wide img{height:200px;object-fit:cover}
+.masonry-item.square img{height:220px;object-fit:cover}
+.masonry-item.short img{height:160px;object-fit:cover}
+/* placeholder quando img non caricata */
+.masonry-item .img-placeholder{
+  width:100%;
+  background:rgba(58,74,46,.10);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Jost',sans-serif;font-size:10px;
+  letter-spacing:.15em;text-transform:uppercase;
+  color:var(--muted);
+}
+.masonry-item.tall .img-placeholder{height:320px}
+.masonry-item.wide .img-placeholder{height:200px}
+.masonry-item.square .img-placeholder{height:220px}
+.masonry-item.short .img-placeholder{height:160px}
+
 </style>
 </head>
 <body>
@@ -475,7 +576,7 @@ body.overlay-open{overflow:hidden}
 <div class="carousel-wrap">
   <div class="track" id="track">
 
-    <div class="card">
+    <div class="card" data-desc="Scrivi qui la descrizione della posizione della Masseria.">
       <img class="card-img" src="img1.jpeg" alt="" draggable="false"/>
       <div class="card-overlay"></div>
       <div class="card-body">
@@ -486,7 +587,7 @@ body.overlay-open{overflow:hidden}
       <div class="card-click-hint"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
     </div>
 
-    <div class="card">
+    <div class="card" data-desc="Scrivi qui la descrizione degli spazi esterni.">
       <img class="card-img" src="img2.jpeg" alt="" draggable="false"/>
       <div class="card-overlay"></div>
       <div class="card-body">
@@ -497,7 +598,7 @@ body.overlay-open{overflow:hidden}
       <div class="card-click-hint"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
     </div>
 
-    <div class="card">
+    <div class="card" data-desc="Scrivi qui la storia della Masseria Lamiola Grande.">
       <img class="card-img" src="img3.jpeg" alt="" draggable="false"/>
       <div class="card-overlay"></div>
       <div class="card-body">
@@ -508,7 +609,7 @@ body.overlay-open{overflow:hidden}
       <div class="card-click-hint"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
     </div>
 
-    <div class="card">
+    <div class="card" data-desc="Scrivi qui la descrizione del cortile.">
       <img class="card-img" src="img4.JPG" alt="" draggable="false"/>
       <div class="card-overlay"></div>
       <div class="card-body">
@@ -519,7 +620,7 @@ body.overlay-open{overflow:hidden}
       <div class="card-click-hint"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
     </div>
 
-    <div class="card">
+    <div class="card" data-desc="Scrivi qui la descrizione dell&#39;architettura.">
       <img class="card-img" src="img5.png" alt="" draggable="false"/>
       <div class="card-overlay"></div>
       <div class="card-body">
@@ -530,7 +631,7 @@ body.overlay-open{overflow:hidden}
       <div class="card-click-hint"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
     </div>
 
-    <div class="card">
+    <div class="card" data-desc="Scrivi qui la descrizione del paesaggio circostante.">
       <img class="card-img" src="img6.jpeg" alt="" draggable="false"/>
       <div class="card-overlay"></div>
       <div class="card-body">
@@ -541,7 +642,7 @@ body.overlay-open{overflow:hidden}
       <div class="card-click-hint"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
     </div>
 
-    <div class="card">
+    <div class="card" data-desc="Scrivi qui le tradizioni locali legate alla Masseria.">
       <img class="card-img" src="img7.png" alt="" draggable="false"/>
       <div class="card-overlay"></div>
       <div class="card-body">
@@ -552,7 +653,7 @@ body.overlay-open{overflow:hidden}
       <div class="card-click-hint"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
     </div>
 
-    <div class="card">
+    <div class="card" data-desc="Scrivi qui le informazioni sul video.">
       <img class="card-img" src="img8.jpeg" alt="" draggable="false"/>
       <div class="card-overlay"></div>
       <div class="card-body">
@@ -563,7 +664,7 @@ body.overlay-open{overflow:hidden}
       <div class="card-click-hint"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
     </div>
 
-    <div class="card">
+    <div class="card" id="galleryCard">
       <img class="card-img" src="img9.jpeg" alt="" draggable="false"/>
       <div class="card-overlay"></div>
       <div class="card-body">
@@ -574,7 +675,7 @@ body.overlay-open{overflow:hidden}
       <div class="card-click-hint"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
     </div>
 
-    <div class="card">
+    <div class="card" data-desc="Scrivi qui le fonti consultate.">
       <img class="card-img" src="img10.png" alt="" draggable="false"/>
       <div class="card-overlay"></div>
       <div class="card-body">
@@ -585,7 +686,7 @@ body.overlay-open{overflow:hidden}
       <div class="card-click-hint"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
     </div>
 
-    <div class="card">
+    <div class="card" data-desc="Scrivi qui la presentazione del FAI.">
       <img class="card-img" src="img11.png" alt="" draggable="false"/>
       <div class="card-overlay"></div>
       <div class="card-body">
@@ -596,7 +697,7 @@ body.overlay-open{overflow:hidden}
       <div class="card-click-hint"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
     </div>
 
-    <div class="card">
+    <div class="card" data-desc="Scrivi qui la presentazione del vostro gruppo.">
       <img class="card-img" src="img14.png" alt="" draggable="false"/>
       <div class="card-overlay"></div>
       <div class="card-body">
@@ -642,7 +743,7 @@ body.overlay-open{overflow:hidden}
     </div>
   </div>
   <div class="po-body" id="poBody">
-    <p>Benvenuti in questa sezione. Qui verranno approfonditi i contenuti relativi alla categoria selezionata per scoprire ogni segreto della Masseria Lamiola Grande.</p>
+    <div class="po-desc" id="poDesc"></div>
   </div>
 </div>
 
@@ -774,15 +875,186 @@ body.overlay-open{overflow:hidden}
   var poTitle   = document.getElementById('poTitle');
   var poTag     = document.getElementById('poTag');
   var poBack    = document.getElementById('poBack');
+  var poDesc    = document.getElementById('poDesc');
   var cards     = document.querySelectorAll('.card');
 
-  cards.forEach(function(card){
+  var descriptions = [
+    cards[0]  ? cards[0].getAttribute('data-desc')  : '',
+    cards[1]  ? cards[1].getAttribute('data-desc')  : '',
+    cards[2]  ? cards[2].getAttribute('data-desc')  : '',
+    cards[3]  ? cards[3].getAttribute('data-desc')  : '',
+    cards[4]  ? cards[4].getAttribute('data-desc')  : '',
+    cards[5]  ? cards[5].getAttribute('data-desc')  : '',
+    cards[6]  ? cards[6].getAttribute('data-desc')  : '',
+    cards[7]  ? cards[7].getAttribute('data-desc')  : '',
+    cards[8]  ? cards[8].getAttribute('data-desc')  : '',
+    cards[9]  ? cards[9].getAttribute('data-desc')  : '',
+    cards[10] ? cards[10].getAttribute('data-desc') : '',
+    cards[11] ? cards[11].getAttribute('data-desc') : ''
+  ];
+
+  var galleryHTML = `<div class='gallery-wrap'>
+
+  <div class='gallery-group'>
+    <div class='gallery-group-title'>Il <em>Territorio</em><span class='gallery-group-num'>01 — 05</span></div>
+    <div class='masonry'>
+      <div class='masonry-item tall'>
+        <img src='gal_territorio_1.jpg' alt='Territorio' onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+        <div class='img-placeholder' style='display:none'>gal_territorio_1.jpg</div>
+      </div>
+      <div class='masonry-item short'>
+        <img src='gal_territorio_2.jpg' alt='Territorio' onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+        <div class='img-placeholder' style='display:none'>gal_territorio_2.jpg</div>
+      </div>
+      <div class='masonry-item square'>
+        <img src='gal_territorio_3.jpg' alt='Territorio' onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+        <div class='img-placeholder' style='display:none'>gal_territorio_3.jpg</div>
+      </div>
+      <div class='masonry-item wide'>
+        <img src='gal_territorio_4.jpg' alt='Territorio' onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+        <div class='img-placeholder' style='display:none'>gal_territorio_4.jpg</div>
+      </div>
+      <div class='masonry-item tall'>
+        <img src='gal_territorio_5.jpg' alt='Territorio' onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+        <div class='img-placeholder' style='display:none'>gal_territorio_5.jpg</div>
+      </div>
+      <div class='masonry-item short'>
+        <img src='gal_territorio_6.jpg' alt='Territorio' onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+        <div class='img-placeholder' style='display:none'>gal_territorio_6.jpg</div>
+      </div>
+    </div>
+  </div>
+
+  <div class='gallery-group'>
+    <div class='gallery-group-title'>L&#39;<em>Architettura</em><span class='gallery-group-num'>02 — 05</span></div>
+    <div class='masonry'>
+      <div class='masonry-item square'>
+        <img src='gal_architettura_1.jpg' alt='Architettura' onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+        <div class='img-placeholder' style='display:none'>gal_architettura_1.jpg</div>
+      </div>
+      <div class='masonry-item tall'>
+        <img src='gal_architettura_2.jpg' alt='Architettura' onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+        <div class='img-placeholder' style='display:none'>gal_architettura_2.jpg</div>
+      </div>
+      <div class='masonry-item short'>
+        <img src='gal_architettura_3.jpg' alt='Architettura' onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+        <div class='img-placeholder' style='display:none'>gal_architettura_3.jpg</div>
+      </div>
+      <div class='masonry-item wide'>
+        <img src='gal_architettura_4.jpg' alt='Architettura' onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+        <div class='img-placeholder' style='display:none'>gal_architettura_4.jpg</div>
+      </div>
+      <div class='masonry-item tall'>
+        <img src='gal_architettura_5.jpg' alt='Architettura' onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+        <div class='img-placeholder' style='display:none'>gal_architettura_5.jpg</div>
+      </div>
+      <div class='masonry-item square'>
+        <img src='gal_architettura_6.jpg' alt='Architettura' onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+        <div class='img-placeholder' style='display:none'>gal_architettura_6.jpg</div>
+      </div>
+    </div>
+  </div>
+
+  <div class='gallery-group'>
+    <div class='gallery-group-title'>Il <em>Cortile</em><span class='gallery-group-num'>03 — 05</span></div>
+    <div class='masonry'>
+      <div class='masonry-item wide'>
+        <img src='gal_cortile_1.jpg' alt='Cortile' onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+        <div class='img-placeholder' style='display:none'>gal_cortile_1.jpg</div>
+      </div>
+      <div class='masonry-item tall'>
+        <img src='gal_cortile_2.jpg' alt='Cortile' onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+        <div class='img-placeholder' style='display:none'>gal_cortile_2.jpg</div>
+      </div>
+      <div class='masonry-item short'>
+        <img src='gal_cortile_3.jpg' alt='Cortile' onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+        <div class='img-placeholder' style='display:none'>gal_cortile_3.jpg</div>
+      </div>
+      <div class='masonry-item square'>
+        <img src='gal_cortile_4.jpg' alt='Cortile' onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+        <div class='img-placeholder' style='display:none'>gal_cortile_4.jpg</div>
+      </div>
+      <div class='masonry-item tall'>
+        <img src='gal_cortile_5.jpg' alt='Cortile' onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+        <div class='img-placeholder' style='display:none'>gal_cortile_5.jpg</div>
+      </div>
+    </div>
+  </div>
+
+  <div class='gallery-group'>
+    <div class='gallery-group-title'>La Vita <em>Contadina</em><span class='gallery-group-num'>04 — 05</span></div>
+    <div class='masonry'>
+      <div class='masonry-item short'>
+        <img src='gal_vita_1.jpg' alt='Vita Contadina' onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+        <div class='img-placeholder' style='display:none'>gal_vita_1.jpg</div>
+      </div>
+      <div class='masonry-item square'>
+        <img src='gal_vita_2.jpg' alt='Vita Contadina' onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+        <div class='img-placeholder' style='display:none'>gal_vita_2.jpg</div>
+      </div>
+      <div class='masonry-item tall'>
+        <img src='gal_vita_3.jpg' alt='Vita Contadina' onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+        <div class='img-placeholder' style='display:none'>gal_vita_3.jpg</div>
+      </div>
+      <div class='masonry-item wide'>
+        <img src='gal_vita_4.jpg' alt='Vita Contadina' onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+        <div class='img-placeholder' style='display:none'>gal_vita_4.jpg</div>
+      </div>
+      <div class='masonry-item square'>
+        <img src='gal_vita_5.jpg' alt='Vita Contadina' onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+        <div class='img-placeholder' style='display:none'>gal_vita_5.jpg</div>
+      </div>
+      <div class='masonry-item short'>
+        <img src='gal_vita_6.jpg' alt='Vita Contadina' onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+        <div class='img-placeholder' style='display:none'>gal_vita_6.jpg</div>
+      </div>
+    </div>
+  </div>
+
+  <div class='gallery-group'>
+    <div class='gallery-group-title'><em>Dettagli</em><span class='gallery-group-num'>05 — 05</span></div>
+    <div class='masonry'>
+      <div class='masonry-item tall'>
+        <img src='gal_dettagli_1.jpg' alt='Dettagli' onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+        <div class='img-placeholder' style='display:none'>gal_dettagli_1.jpg</div>
+      </div>
+      <div class='masonry-item short'>
+        <img src='gal_dettagli_2.jpg' alt='Dettagli' onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+        <div class='img-placeholder' style='display:none'>gal_dettagli_2.jpg</div>
+      </div>
+      <div class='masonry-item square'>
+        <img src='gal_dettagli_3.jpg' alt='Dettagli' onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+        <div class='img-placeholder' style='display:none'>gal_dettagli_3.jpg</div>
+      </div>
+      <div class='masonry-item wide'>
+        <img src='gal_dettagli_4.jpg' alt='Dettagli' onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+        <div class='img-placeholder' style='display:none'>gal_dettagli_4.jpg</div>
+      </div>
+      <div class='masonry-item tall'>
+        <img src='gal_dettagli_5.jpg' alt='Dettagli' onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+        <div class='img-placeholder' style='display:none'>gal_dettagli_5.jpg</div>
+      </div>
+      <div class='masonry-item short'>
+        <img src='gal_dettagli_6.jpg' alt='Dettagli' onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+        <div class='img-placeholder' style='display:none'>gal_dettagli_6.jpg</div>
+      </div>
+    </div>
+  </div>
+
+</div>`;
+
+  cards.forEach(function(card, i){
     card.addEventListener('dblclick', function(){
       stopInertia();
       poHeroImg.src     = card.querySelector('img').src;
       poNum.textContent = card.querySelector('.card-num').textContent;
       poTitle.innerHTML = card.querySelector('.card-title').innerHTML;
       poTag.textContent = card.querySelector('.card-tag').textContent;
+      if(card.id === 'galleryCard'){
+        poDesc.innerHTML = galleryHTML;
+      } else {
+        poDesc.innerHTML = card.getAttribute('data-desc') || '';
+      }
       overlay.classList.add('is-open');
       document.body.classList.add('overlay-open');
     });
