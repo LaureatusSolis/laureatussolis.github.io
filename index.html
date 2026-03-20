@@ -1072,15 +1072,13 @@ body.overlay-open{overflow:hidden}
   function maxScroll(){ return track.scrollWidth - track.clientWidth; }
 
   function updateProgress(){
-    var max = maxScroll(); if(max<=0) return;
-    var pct = track.scrollLeft / max;
-    var total = 12;
-    var idx = Math.min(total, Math.round(track.scrollLeft / STEP) + 1);
-    var pct = (idx - 1) / (total - 1);
-    pFill.style.width = (10 + pct*90) + '%';
-    var idx = Math.min(12, Math.round(track.scrollLeft / STEP) + 1);
-    pLabel.textContent = (idx<10?'0'+idx:idx) + ' — 12';
-  }
+  var max = maxScroll(); if(max<=0) return;
+  var pct = track.scrollLeft / max;
+  var idx = Math.round(pct * 11) + 1;
+  idx = Math.max(1, Math.min(12, idx));
+  pFill.style.width = (10 + (idx-1)/11*90) + '%';
+  pLabel.textContent = (idx<10?'0'+idx:idx) + ' — 12';
+}
 
   var animRaf = null;
   function smoothTo(target){
