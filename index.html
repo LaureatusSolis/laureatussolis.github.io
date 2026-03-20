@@ -779,7 +779,28 @@ body.overlay-open{overflow:hidden}
 
   .po-section p{font-size:17px;}
   .po-pull{font-size:clamp(18px,5vw,24px);}
+  }
+  
+  .torna-btn{
+    position:fixed;
+    top:16px;left:20px;
+    padding:8px 18px;
+    border-radius:100px;
+    background:rgba(10,16,8,.72);
+    color:var(--cream);
+    text-decoration:none;
+    font-family:'Jost',sans-serif;
+    font-size:11px;
+    letter-spacing:.12em;
+    border:1px solid rgba(255,255,255,.2);
+    backdrop-filter:blur(10px);
+    -webkit-backdrop-filter:blur(10px);
+    z-index:99999;
+    display:none;
+    cursor:pointer;
 }
+.torna-btn:hover{background:rgba(10,16,8,.95)}
+  
 </style>
 </head>
 <body>
@@ -810,7 +831,7 @@ body.overlay-open{overflow:hidden}
     </div>
     <div class="hero-logo-wrap">
       <img class="hero-logo-img" src="img12.png" alt="Logo FAI"/>
-      <span class="hero-logo-label">Fondo Ambientale<br>Italiano</span>
+      <span class="hero-logo-label">Fondo Ambiente<br>Italiano</span>
     </div>
   </div>
 </section>
@@ -1129,6 +1150,8 @@ body.overlay-open{overflow:hidden}
   var poMiniNum  = document.getElementById('poMiniNum');
   var poMiniTitle= document.getElementById('poMiniTitle');
   var poBack     = document.getElementById('poBack');
+  var tornaBtn = document.getElementById('tornaBtn');
+  tornaBtn.addEventListener('click', function(){ closeOverlay(); });
   var poBody     = document.getElementById('poBody');
   var poDesc     = document.getElementById('poDesc');
   var cards      = document.querySelectorAll('.card');
@@ -1231,6 +1254,7 @@ body.overlay-open{overflow:hidden}
     setContent(card, false);
     overlay.classList.add('is-open');
     document.body.classList.add('overlay-open');
+    tornaBtn.style.display = 'block';
     poNav.classList.remove('visible');
   }
 
@@ -1272,6 +1296,7 @@ body.overlay-open{overflow:hidden}
     poHero.classList.remove('shrunk');
     poNav.classList.remove('visible');
     poBody.scrollTop = 0;
+    tornaBtn.style.display = 'none';
   }
 
   poBack.addEventListener('click', function(e){ e.preventDefault(); closeOverlay(); });
@@ -1288,5 +1313,8 @@ body.overlay-open{overflow:hidden}
 
 })();
 </script>
+
+  <button class="torna-btn" id="tornaBtn">← Torna</button>
+  
 </body>
 </html>
