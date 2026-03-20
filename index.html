@@ -798,6 +798,26 @@ body.overlay-open{overflow:hidden}
     z-index:99999;
     display:none;
     cursor:pointer;
+
+  .po-pdf-block{
+  display:flex;align-items:center;gap:16px;
+  margin-top:36px;padding:18px 20px;
+  border:1px solid rgba(122,154,74,.3);
+  border-radius:14px;background:rgba(122,154,74,.05);
+  }
+  .po-pdf-icon{color:var(--gold);flex-shrink:0}
+  .po-pdf-info{display:flex;flex-direction:column;gap:4px;flex:1}
+  .po-pdf-label{font-family:'Jost',sans-serif;font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+  .po-pdf-name{font-family:'Playfair Display',serif;font-size:15px;color:var(--stone)}
+  .po-pdf-btn{
+    padding:8px 18px;border-radius:100px;
+    background:var(--gold);color:var(--cream);
+    font-family:'Jost',sans-serif;font-size:10px;
+    letter-spacing:.15em;text-transform:uppercase;
+    text-decoration:none;white-space:nowrap;
+    transition:background .25s ease;
+  }
+  .po-pdf-btn:hover{background:var(--stone)}
 }
 .torna-btn:hover{background:rgba(10,16,8,.95)}
   
@@ -1229,7 +1249,11 @@ body.overlay-open{overflow:hidden}
       if(card.id === 'galleryCard'){
         poDesc.innerHTML = galleryHTML;
       } else {
-        poDesc.innerHTML = descriptions[idx] || '<p style="font-family:Cormorant Garamond,serif;font-size:18px;color:var(--stone)">Contenuto in arrivo.</p>';
+        var content = descriptions[idx] || '<p style="font-family:Cormorant Garamond,serif;font-size:18px;color:var(--stone)">Contenuto in arrivo.</p>';
+        if(idx === 4){
+        content += '<div class="po-pdf-block"><div class="po-pdf-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="28" height="28"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div><div class="po-pdf-info"><span class="po-pdf-label">Documento allegato</span><span class="po-pdf-name">Architettura — Masseria Lamiola Grande</span></div><a href="architettura.pdf" target="_blank" class="po-pdf-btn">Apri PDF</a></div>';
+        }
+        poDesc.innerHTML = content;
       }
       poHero.classList.remove('shrunk');
       poBody.scrollTop = 0;
