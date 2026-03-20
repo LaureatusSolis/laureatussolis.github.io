@@ -91,78 +91,41 @@ body::after{
 
 /* HERO LOGOS — con tooltip */
 .hero-logos{
-  position:absolute;
-  bottom:40px;
-  right:8vw;
-  display:flex;
-  align-items:center;
-  gap:18px;
-  z-index:2;
+  position:absolute;bottom:40px;right:8vw;
+  display:flex;align-items:center;gap:18px;z-index:2;
 }
-
 .hero-logo-wrap{
-  position:relative;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  cursor:default;
+  position:relative;display:flex;flex-direction:column;
+  align-items:center;cursor:default;
 }
-
 .hero-logo-label{
-  position:absolute;
-  bottom:calc(100% + 12px);
-  left:50%;
+  position:absolute;bottom:calc(100% + 12px);left:50%;
   transform:translateX(-50%) translateY(10px);
   background:rgba(10,16,8,.78);
-  backdrop-filter:blur(8px);
-  -webkit-backdrop-filter:blur(8px);
-  color:var(--cream);
-  font-family:'Jost',sans-serif;
-  font-size:11px;
-  font-weight:300;
-  letter-spacing:.12em;
-  text-align:center;
-  line-height:1.6;
-  padding:8px 14px;
-  border-radius:10px;
-  border:1px solid var(--cream);
-  white-space:nowrap;
-  pointer-events:none;
-  opacity:0;
+  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+  color:var(--cream);font-family:'Jost',sans-serif;
+  font-size:11px;font-weight:300;letter-spacing:.12em;
+  text-align:center;line-height:1.6;padding:8px 14px;
+  border-radius:10px;border:1px solid var(--cream);
+  white-space:nowrap;pointer-events:none;opacity:0;
   transition:opacity .35s cubic-bezier(.23,1,.32,1),
              transform .35s cubic-bezier(.23,1,.32,1);
 }
-
 .hero-logo-label::after{
-  content:'';
-  position:absolute;
-  top:100%;
-  left:50%;
+  content:'';position:absolute;top:100%;left:50%;
   transform:translateX(-50%);
-  border:5px solid transparent;
-  border-top-color:var(--cream);
+  border:5px solid transparent;border-top-color:var(--cream);
 }
-
-.hero-logo-wrap:hover .hero-logo-label{
-  opacity:1;
-  transform:translateX(-50%) translateY(0);
-}
-
+.hero-logo-wrap:hover .hero-logo-label{opacity:1;transform:translateX(-50%) translateY(0)}
 .hero-logo-wrap:hover .hero-logo-img{
-  filter:drop-shadow(0 0 10px rgba(160,188,106,.55));
-  transform:scale(1.06);
+  filter:drop-shadow(0 0 10px rgba(160,188,106,.55));transform:scale(1.06);
 }
-
 .hero-logo-img{
-  height:96px;
-  width:auto;
-  object-fit:contain;
-  opacity:.9;
-  transition:transform .35s cubic-bezier(.23,1,.32,1),
-             filter .35s ease;
+  height:96px;width:auto;object-fit:contain;opacity:.9;
+  transition:transform .35s cubic-bezier(.23,1,.32,1),filter .35s ease;
 }
 
-/* SECTION INTRO */
+/* SECTION INTRO (Le nostre sezioni) */
 .section-intro{
   padding:80px 8vw 0;display:flex;align-items:flex-end;
   justify-content:space-between;gap:32px;flex-wrap:wrap;
@@ -202,29 +165,19 @@ body::after{
 .carousel-wrap::before{left:0;background:linear-gradient(90deg,var(--bg),transparent)}
 .carousel-wrap::after{right:0;background:linear-gradient(270deg,var(--bg),transparent)}
 .track{
-  display:flex;
-  gap:var(--gap);
-  padding:16px 8vw 20px;
-  overflow-x:scroll;
-  scrollbar-width:none;
-  -ms-overflow-style:none;
-  cursor:grab;
-  user-select:none;
-  -webkit-user-select:none;
-  -webkit-overflow-scrolling:touch;
-  will-change:scroll-position;
+  display:flex;gap:var(--gap);padding:16px 8vw 20px;
+  overflow-x:scroll;scrollbar-width:none;-ms-overflow-style:none;
+  cursor:grab;user-select:none;-webkit-user-select:none;
+  -webkit-overflow-scrolling:touch;will-change:scroll-position;
 }
 .track::-webkit-scrollbar{display:none}
 .track.is-dragging{cursor:grabbing;scroll-snap-type:none}
 
 /* CARDS */
 .card{
-  flex:0 0 var(--card-w);
-  height:var(--card-h);
-  border-radius:var(--r);
-  overflow:hidden;position:relative;
-  background:var(--stone);
-  box-shadow:0 6px 28px rgba(30,40,24,.22);
+  flex:0 0 var(--card-w);height:var(--card-h);
+  border-radius:var(--r);overflow:hidden;position:relative;
+  background:var(--stone);box-shadow:0 6px 28px rgba(30,40,24,.22);
   transition:transform .5s cubic-bezier(.23,1,.32,1),
              box-shadow .5s cubic-bezier(.23,1,.32,1);
   cursor:pointer;
@@ -257,8 +210,7 @@ body::after{
 }
 .card-body{
   position:absolute;bottom:0;left:0;right:0;
-  padding:22px 18px 18px;
-  transform:translateY(6px);
+  padding:22px 18px 18px;transform:translateY(6px);
   transition:transform .5s cubic-bezier(.23,1,.32,1);
 }
 .card:hover .card-body{transform:translateY(0)}
@@ -282,7 +234,7 @@ body::after{
 }
 .card:hover .card-tag{opacity:1;transform:translateY(0)}
 
-/* CLICK HINT SULLE CARD */
+/* CLICK HINT */
 .card-click-hint{
   position:absolute;top:14px;right:14px;
   width:28px;height:28px;border-radius:50%;
@@ -296,21 +248,13 @@ body::after{
 .card-click-hint svg{width:12px;height:12px;stroke:var(--cream);fill:none;stroke-width:2}
 
 /* PROGRESS */
-.progress-row{
-  padding:0 8vw 16px;display:flex;align-items:center;gap:18px;
-}
+.progress-row{padding:0 8vw 16px;display:flex;align-items:center;gap:18px}
 .progress-bar{
   flex:1;max-width:200px;height:2px;
   background:rgba(58,74,46,.15);border-radius:100px;overflow:hidden;
 }
-.progress-fill{
-  height:100%;background:var(--gold);border-radius:100px;
-  transition:width .25s ease;width:10%;
-}
-.prog-label{
-  font-family:'Jost',sans-serif;font-size:11px;
-  letter-spacing:.2em;color:var(--muted);
-}
+.progress-fill{height:100%;background:var(--gold);border-radius:100px;transition:width .25s ease;width:10%}
+.prog-label{font-family:'Jost',sans-serif;font-size:11px;letter-spacing:.2em;color:var(--muted)}
 .nav-btns{margin-left:auto;display:flex;gap:10px}
 .nav-btn{
   width:38px;height:38px;border-radius:50%;
@@ -328,15 +272,9 @@ footer{
   border-top:1px solid rgba(58,74,46,.2);
   display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;
 }
-.footer-brand{
-  font-family:'Playfair Display',serif;font-size:14px;
-  font-weight:400;color:var(--stone);letter-spacing:.05em;
-}
+.footer-brand{font-family:'Playfair Display',serif;font-size:14px;font-weight:400;color:var(--stone);letter-spacing:.05em}
 .footer-brand em{font-style:italic;color:var(--gold)}
-footer p{
-  font-family:'Jost',sans-serif;font-size:11px;
-  letter-spacing:.2em;text-transform:uppercase;color:var(--muted);
-}
+footer p{font-family:'Jost',sans-serif;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
 
 /* KEYFRAMES GLOBALI */
 @keyframes fU{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
@@ -345,97 +283,116 @@ footer p{
 /* SEZIONE INTRODUZIONE */
 .intro-section{
   padding:80px 8vw 0;
-  display:flex;
-  align-items:stretch;
-  gap:48px;
-  flex-wrap:wrap;
+  display:flex;align-items:stretch;gap:64px;flex-wrap:wrap;
 }
 .intro-text{
-  flex:1 1 320px;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  gap:20px;
+  flex:1 1 340px;
+  display:flex;flex-direction:column;justify-content:center;gap:28px;
 }
 .intro-text h2{
   font-family:'Playfair Display',serif;
   font-size:clamp(32px,4vw,52px);
-  font-weight:400;
-  color:var(--stone);
-  letter-spacing:-.02em;
-  line-height:1.1;
+  font-weight:400;color:var(--stone);
+  letter-spacing:-.02em;line-height:1.1;
 }
 .intro-text h2 em{font-style:italic;color:var(--gold)}
 .intro-body{
   font-family:'Jost',sans-serif;
-  font-weight:200;
-  font-size:14px;
-  color:var(--muted);
-  letter-spacing:.05em;
-  line-height:1.95;
+  font-weight:300;
+  font-size:15px;
+  color:var(--stone);
+  letter-spacing:.04em;
+  line-height:2;
   max-width:520px;
 }
 .intro-img-wrap{
-  flex:1 1 280px;
-  position:relative;
-  border-radius:var(--r);
-  overflow:hidden;
-  min-height:280px;
-  max-height:380px;
+  flex:1 1 300px;position:relative;
+  border-radius:var(--r);overflow:hidden;
+  min-height:300px;max-height:400px;
   box-shadow:0 12px 40px rgba(30,40,24,.18);
 }
-.intro-img{
-  width:100%;height:100%;
-  object-fit:cover;
-  display:block;
-  transition:transform .7s cubic-bezier(.23,1,.32,1);
-}
+.intro-img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .7s cubic-bezier(.23,1,.32,1)}
 .intro-img-wrap:hover .intro-img{transform:scale(1.04)}
 .intro-img-caption{
-  position:absolute;bottom:0;left:0;right:0;
-  padding:14px 18px;
+  position:absolute;bottom:0;left:0;right:0;padding:14px 18px;
   background:linear-gradient(to top,rgba(30,40,24,.75),transparent);
-  font-family:'Jost',sans-serif;
-  font-size:10px;
-  letter-spacing:.2em;
-  text-transform:uppercase;
-  color:rgba(247,242,228,.65);
+  font-family:'Jost',sans-serif;font-size:10px;
+  letter-spacing:.2em;text-transform:uppercase;color:rgba(247,242,228,.65);
 }
 
-/* RESPONSIVE */
+/* ================================================
+   RESPONSIVE — solo mobile (max 640px)
+   ================================================ */
 @media(max-width:640px){
-  :root{--card-w:210px;--card-h:300px}
-  .section-intro{flex-direction:column;gap:16px}
-  .section-intro-right{text-align:left;max-width:100%}
-  .intro-section{flex-direction:column;gap:28px}
-  .intro-img-wrap{min-height:220px}
+
+  /* VARIABILI CARD */
+  :root{
+    --card-w:82vw;
+    --card-h:320px;
+    --gap:14px;
+  }
+
+  /* HERO */
+  .hero{padding:60px 6vw 140px;align-items:flex-start}
+  .hero-eyebrow{font-size:11px;letter-spacing:.22em;margin-left:16px;margin-bottom:14px}
+  .hero-title{font-size:clamp(38px,13vw,64px);margin-left:16px}
+  .hero-sub{font-size:13px;margin-left:16px;margin-top:20px;max-width:90%}
+  .hero-scroll{bottom:100px;left:6vw;margin-left:16px}
+
+  /* loghi centrati in basso */
+  .hero-logos{bottom:24px;right:auto;left:0;width:100%;justify-content:center;gap:24px}
+  .hero-logo-img{height:60px}
+  .hero-logo-label{font-size:10px;padding:6px 10px}
+
+  /* INTRO SEZIONE */
+  .intro-section{flex-direction:column;gap:28px;padding:48px 6vw 0}
+  .intro-text{gap:18px}
+  .intro-text h2{font-size:clamp(28px,9vw,42px)}
+  .intro-body{font-size:14px;line-height:1.85;max-width:100%}
+  .intro-img-wrap{min-height:220px;max-height:260px;flex:none;width:100%}
+
+  /* LE NOSTRE SEZIONI */
+  .section-intro{flex-direction:column;gap:14px;padding:48px 6vw 0}
+  .section-intro-right{text-align:left;max-width:100%;font-size:12px}
+
+  /* RULE */
+  .rule{width:calc(100% - 12vw);margin:20px 6vw 0}
+
+  /* DRAG HINT */
+  .drag-row{padding:14px 6vw 0}
+
+  /* CAROUSEL — snap al centro */
+  .carousel-wrap{padding:20px 0 32px}
+  .track{
+    padding:12px 9vw 16px;
+    scroll-snap-type:x mandatory;
+    -webkit-scroll-snap-type:x mandatory;
+    scroll-padding:0 9vw;
+  }
+  .card{scroll-snap-align:center;border-radius:14px}
+  .card-title{font-size:17px}
+
+  /* PROGRESS */
+  .progress-row{padding:0 6vw 14px}
+
+  /* FOOTER */
+  footer{flex-direction:column;align-items:flex-start;gap:10px;padding:32px 6vw 28px}
+  footer > div[style]{display:none}
 }
 
-/* BLOCCA SCROLL QUANDO OVERLAY APERTO */
+/* OVERLAY */
 body.overlay-open{overflow:hidden}
-
-/* OVERLAY PAGINA */
 .page-overlay{
   position:fixed;inset:0;z-index:10000;
   display:flex;flex-direction:column;
-  background:var(--cream);
-  opacity:0;pointer-events:none;
+  background:var(--cream);opacity:0;pointer-events:none;
   transition:opacity .55s cubic-bezier(.23,1,.32,1);
 }
-.page-overlay.is-open{
-  opacity:1;pointer-events:all;
-}
-
-/* HERO OVERLAY */
-.po-hero{
-  position:relative;
-  height:clamp(220px,40vh,420px);
-  overflow:hidden;
-}
+.page-overlay.is-open{opacity:1;pointer-events:all}
+.po-hero{position:relative;height:clamp(220px,40vh,420px);overflow:hidden}
 .po-hero-img{
   width:100%;height:100%;object-fit:cover;
-  transform:scale(1.08);
-  transition:transform .9s cubic-bezier(.23,1,.32,1);
+  transform:scale(1.08);transition:transform .9s cubic-bezier(.23,1,.32,1);
 }
 .page-overlay.is-open .po-hero-img{transform:scale(1)}
 .po-hero-veil{
@@ -443,46 +400,23 @@ body.overlay-open{overflow:hidden}
   background:linear-gradient(to bottom,rgba(10,16,8,.15),rgba(10,16,8,.72));
 }
 .po-hero-meta{
-  position:absolute;bottom:0;left:0;right:0;
-  padding:28px 8vw;
-  display:flex;justify-content:space-between;flex-wrap:wrap;
-  color:var(--cream);
+  position:absolute;bottom:0;left:0;right:0;padding:28px 8vw;
+  display:flex;justify-content:space-between;flex-wrap:wrap;color:var(--cream);
 }
-.po-title{
-  font-family:'Playfair Display',serif;
-  font-size:clamp(28px,5vw,56px);
-  color:var(--cream);
-}
+.po-title{font-family:'Playfair Display',serif;font-size:clamp(28px,5vw,56px);color:var(--cream)}
 .po-tag{
-  border:1px solid rgba(160,188,106,.4);
-  padding:5px 14px;border-radius:100px;
-  font-size:10px;text-transform:uppercase;
-  align-self:flex-end;
-  font-family:'Jost',sans-serif;
-  color:var(--gold2);
-  letter-spacing:.15em;
+  border:1px solid rgba(160,188,106,.4);padding:5px 14px;border-radius:100px;
+  font-size:10px;text-transform:uppercase;align-self:flex-end;
+  font-family:'Jost',sans-serif;color:var(--gold2);letter-spacing:.15em;
 }
-
-/* BACK BUTTON */
 .po-back{
-  position:absolute;top:20px;left:8vw;
-  padding:8px 16px;border-radius:100px;
-  background:rgba(10,16,8,.6);
-  color:var(--cream);
-  text-decoration:none;
-  font-family:'Jost',sans-serif;
-  font-size:12px;
-  z-index:10;
-  letter-spacing:.1em;
+  position:absolute;top:20px;left:8vw;padding:8px 16px;border-radius:100px;
+  background:rgba(10,16,8,.6);color:var(--cream);text-decoration:none;
+  font-family:'Jost',sans-serif;font-size:12px;z-index:10;letter-spacing:.1em;
 }
-
-/* BODY OVERLAY */
 .po-body{
-  flex:1;overflow:auto;
-  padding:48px 8vw;
-  color:var(--mamma);
-  font-family:'Jost',sans-serif;
-  line-height:1.8;
+  flex:1;overflow:auto;padding:48px 8vw;
+  color:var(--mamma);font-family:'Jost',sans-serif;line-height:1.8;
 }
 </style>
 </head>
@@ -499,8 +433,6 @@ body.overlay-open{overflow:hidden}
     <span>Scopri</span>
     <div class="scroll-line"></div>
   </div>
-
-  <!-- LOGOS CON TOOLTIP -->
   <div class="hero-logos">
     <div class="hero-logo-wrap">
       <img class="hero-logo-img" src="img13.png" alt="Logo Liceo"/>
@@ -516,7 +448,7 @@ body.overlay-open{overflow:hidden}
 <!-- SEZIONE INTRODUZIONE -->
 <div class="intro-section">
   <div class="intro-text">
-    <h2>Introduzione<br><em></em></h2>
+    <h2>Intro<em>duzione</em></h2>
     <p class="intro-body">La Masseria Lamiola Grande sorge nel cuore della Puglia, tra ulivi secolari e muretti a secco che disegnano il paesaggio da tempi immemorabili. Un luogo dove la storia agricola si intreccia con l'architettura rurale, testimoniando secoli di vita contadina e di rapporto profondo con la terra.<br><br>Questo progetto nasce dalla collaborazione tra il Liceo Polivalente Don Quirico Punzi e il Fondo Ambientale Italiano, con l'obiettivo di valorizzare e raccontare questo straordinario patrimonio culturale pugliese.</p>
   </div>
   <div class="intro-img-wrap">
@@ -527,7 +459,7 @@ body.overlay-open{overflow:hidden}
 
 <div class="rule"></div>
 
-<!-- SECTION INTRO -->
+<!-- LE NOSTRE SEZIONI -->
 <div class="section-intro">
   <div class="section-intro-left"><h2>Le nostre<br><em>sezioni</em></h2></div>
   <div class="section-intro-right">Trascina le schede per esplorare ogni capitolo della storia della Masseria Lamiola Grande. Esegui un doppio tocco sulle schede per aprire quest'ultime</div>
@@ -758,7 +690,7 @@ body.overlay-open{overflow:hidden}
     smoothTo(Math.round(track.scrollLeft / STEP) * STEP);
   }
 
-  var mouseDown  = false;
+  var mouseDown = false;
   var mouseStartX = 0, mouseStartS = 0, mouseLastX = 0, mouseVel = 0;
   var inertiaRaf = null;
 
@@ -769,7 +701,7 @@ body.overlay-open{overflow:hidden}
 
   track.addEventListener('mousedown', function(e){
     stopInertia();
-    mouseDown   = true;
+    mouseDown = true;
     mouseStartX = e.clientX;
     mouseStartS = track.scrollLeft;
     mouseLastX  = e.clientX;
@@ -780,8 +712,8 @@ body.overlay-open{overflow:hidden}
 
   document.addEventListener('mousemove', function(e){
     if(!mouseDown) return;
-    mouseVel    = mouseLastX - e.clientX;
-    mouseLastX  = e.clientX;
+    mouseVel = mouseLastX - e.clientX;
+    mouseLastX = e.clientX;
     track.scrollLeft = mouseStartS + (mouseStartX - e.clientX);
     updateProgress();
   });
@@ -836,21 +768,21 @@ body.overlay-open{overflow:hidden}
   updateProgress();
 
   /* ---- OVERLAY ---- */
-  var overlay    = document.getElementById('pageOverlay');
-  var poHeroImg  = document.getElementById('poHeroImg');
-  var poNum      = document.getElementById('poNum');
-  var poTitle    = document.getElementById('poTitle');
-  var poTag      = document.getElementById('poTag');
-  var poBack     = document.getElementById('poBack');
-  var cards      = document.querySelectorAll('.card');
+  var overlay   = document.getElementById('pageOverlay');
+  var poHeroImg = document.getElementById('poHeroImg');
+  var poNum     = document.getElementById('poNum');
+  var poTitle   = document.getElementById('poTitle');
+  var poTag     = document.getElementById('poTag');
+  var poBack    = document.getElementById('poBack');
+  var cards     = document.querySelectorAll('.card');
 
   cards.forEach(function(card){
     card.addEventListener('dblclick', function(){
       stopInertia();
-      poHeroImg.src        = card.querySelector('img').src;
-      poNum.textContent    = card.querySelector('.card-num').textContent;
-      poTitle.innerHTML    = card.querySelector('.card-title').innerHTML;
-      poTag.textContent    = card.querySelector('.card-tag').textContent;
+      poHeroImg.src     = card.querySelector('img').src;
+      poNum.textContent = card.querySelector('.card-num').textContent;
+      poTitle.innerHTML = card.querySelector('.card-title').innerHTML;
+      poTag.textContent = card.querySelector('.card-tag').textContent;
       overlay.classList.add('is-open');
       document.body.classList.add('overlay-open');
     });
